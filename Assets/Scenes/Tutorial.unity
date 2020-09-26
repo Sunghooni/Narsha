@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427147, b: 0.56452364, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3488,7 +3488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ccc855a5babcc4997ecadba4e990db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PausePanel: {fileID: 0}
 --- !u!1 &1048237129
 GameObject:
   m_ObjectHideFlags: 0
@@ -5293,8 +5292,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1448282247}
+  firstBlock: {fileID: 849627833}
   canInput: 1
   canMove: 1
+  winCheck: 0
+  nameCnt: 1
 --- !u!1 &1480822996
 GameObject:
   m_ObjectHideFlags: 0
@@ -7028,7 +7030,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846658352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20ccc855a5babcc4997ecadba4e990db, type: 3}
+  m_Script: {fileID: 11500000, guid: b0c1db88f782bbd4ab2ae8c2768eb241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PausePanel: {fileID: 984223282}
