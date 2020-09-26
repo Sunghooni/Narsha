@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BlockMove : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class BlockMove : MonoBehaviour
     {
         GetInput();
         ArrayCheck(firstBlock);
+        ResetBlock();
     }
 
     void GetInput()
@@ -114,10 +116,10 @@ public class BlockMove : MonoBehaviour
         movePos += -Vector3.forward * 5;
         movePos += Vector3.up * 5;
 
-            if (Physics.Raycast(movePos, Vector3.down, out checkHit, 4.7f))
-            {
-                if (checkHit.transform.name == "block" + nameCnt.ToString())
-                    ArrayCheck(checkHit.transform.gameObject);
+        if (Physics.Raycast(movePos, Vector3.down, out checkHit, 4.7f))
+        {
+            if (checkHit.transform.name == "block" + nameCnt.ToString())
+                ArrayCheck(checkHit.transform.gameObject);
             else
             {
                 nameCnt = 1;
@@ -129,5 +131,11 @@ public class BlockMove : MonoBehaviour
             nameCnt = 1;
             return;
         }
+    }
+
+    void ResetBlock()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
