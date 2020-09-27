@@ -5,21 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class InGameUIManager : MonoBehaviour
 {
-    bool isPause = false;
-    public GameObject PausePanel;
+    public GameObject PausePanel, ClearPanel, Player;
+    bool isClear;
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        isClear = Player.GetComponent<BlockMove>().winCheck;
+        if(Input.GetKeyDown(KeyCode.Escape) && isClear == false)
         {
             if(!PausePanel.active)
                 PausePanel.SetActive(true);
             else
                 PausePanel.SetActive(false);
         }
+
+        if (isClear)
+            ClearPanel.SetActive(true);
+        else
+            ClearPanel.SetActive(false);
+
     }
 
     public void BackToStage()
     {
         SceneManager.LoadScene("Stage");
     }
+
 }
