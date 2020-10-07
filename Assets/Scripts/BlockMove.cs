@@ -10,15 +10,12 @@ public class BlockMove : MonoBehaviour
 {
     public GameObject player;
     public GameObject firstBlock;
-    public bool canInput = true;
-    public bool canMove = true;
     public bool winCheck = false;
+    public bool canInput = true;
 
-    private RaycastHit moveHit;
-    private RaycastHit checkHit;
-
-    public int nameCnt = 1;
+    private int nameCnt = 1;
     private int maxCnt = 3;
+    private bool canMove = true;
 
     void Update()
     {
@@ -60,6 +57,8 @@ public class BlockMove : MonoBehaviour
 
     void Move(GameObject me)
     {
+        RaycastHit moveHit;
+
         if (me == player)
             canMove = true;
 
@@ -104,6 +103,8 @@ public class BlockMove : MonoBehaviour
 
     void ArrayCheck(GameObject me)
     {
+        RaycastHit checkHit;
+
         if (nameCnt == maxCnt)
         {
             winCheck = true;
