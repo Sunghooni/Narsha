@@ -12,6 +12,7 @@ public class BlockMove : MonoBehaviour
     public GameObject firstBlock;
     public bool winCheck = false;
     public bool canInput = true;
+    public AudioSource playerMoving;
 
     private int nameCnt = 1;
     private int maxCnt = 3;
@@ -20,8 +21,8 @@ public class BlockMove : MonoBehaviour
     void Update()
     {
         GetInput();
-        ArrayCheck(firstBlock);
         ResetBlock();
+        ArrayCheck(firstBlock.transform.position);
     }
 
     void GetInput()
@@ -80,6 +81,7 @@ public class BlockMove : MonoBehaviour
         {
             movePos -= transform.up * 5;
             me.transform.position = movePos;
+            playerMoving.Play();
         }
         return;
     }
@@ -101,10 +103,10 @@ public class BlockMove : MonoBehaviour
         }
     }
 
-    void ArrayCheck(GameObject me)
+    void ArrayCheck(Vector3 me)
     {
         RaycastHit checkHit;
-
+        Vector3 newPos = me;
         if (nameCnt == maxCnt)
         {
             winCheck = true;
@@ -113,14 +115,17 @@ public class BlockMove : MonoBehaviour
 
         nameCnt += 1;
 
-        Vector3 movePos = me.transform.position;
+        Vector3 movePos = me;
         movePos += -Vector3.forward * 5;
         movePos += Vector3.up * 5;
 
         if (Physics.Raycast(movePos, Vector3.down, out checkHit, 4.7f))
         {
             if (checkHit.transform.name == "block" + nameCnt.ToString())
-                ArrayCheck(checkHit.transform.gameObject);
+            {
+                movePos += Vector3.up * -5;
+                ArrayCheck(movePos);
+            }
             else
             {
                 nameCnt = 1;
