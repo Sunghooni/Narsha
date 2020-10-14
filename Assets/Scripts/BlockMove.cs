@@ -9,20 +9,14 @@ using UnityEngine.SceneManagement;
 public class BlockMove : MonoBehaviour
 {
     public GameObject player;
-    public GameObject firstBlock;
-    public bool winCheck = false;
-    public bool canInput = true;
     public AudioSource playerMoving;
-
-    private int nameCnt = 1;
-    private int maxCnt = 3;
+    public bool canInput = true;
     private bool canMove = true;
 
     void Update()
     {
         GetInput();
         ResetBlock();
-        ArrayCheck(firstBlock.transform.position);
     }
 
     void GetInput()
@@ -81,7 +75,7 @@ public class BlockMove : MonoBehaviour
         {
             movePos -= transform.up * 1;
             me.transform.position = movePos;
-            playerMoving.Play();
+            AudioManager.GetInstance().PlaySounds("BasicMove");
         }
         return;
     }
@@ -100,42 +94,6 @@ public class BlockMove : MonoBehaviour
                 break;
             }
             yield return null;
-        }
-    }
-
-    void ArrayCheck(Vector3 me)
-    {
-        RaycastHit checkHit;
-        Vector3 newPos = me;
-        if (nameCnt == maxCnt)
-        {
-            winCheck = true;
-            return;
-        }
-
-        nameCnt += 1;
-
-        Vector3 movePos = me;
-        movePos += -Vector3.forward * 1;
-        movePos += Vector3.up * 1;
-
-        if (Physics.Raycast(movePos, Vector3.down, out checkHit, 0.7f))
-        {
-            if (checkHit.transform.name == "block" + nameCnt.ToString())
-            {
-                movePos += Vector3.up * -1;
-                ArrayCheck(movePos);
-            }
-            else
-            {
-                nameCnt = 1;
-                return;
-            }
-        }
-        else
-        {
-            nameCnt = 1;
-            return;
         }
     }
 
