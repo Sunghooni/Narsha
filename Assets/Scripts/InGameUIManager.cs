@@ -5,23 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class InGameUIManager : MonoBehaviour
 {
-    public GameObject PausePanel, ClearPanel, Player;
+    public GameObject PausePanel, ClearPanel, firstBlock, player;
     bool isClear;
 
     private void Update()
     {
-        isClear = Player.GetComponent<BlockMove>().winCheck;
+        isClear = firstBlock.GetComponent<ClearCheck>().winCheck;
         if(Input.GetKeyDown(KeyCode.Escape) && isClear == false)
         {
             if (!PausePanel.active)
             {
                 PausePanel.SetActive(true);
-                Player.GetComponent<BlockMove>().canInput = false;
+                player.GetComponent<BlockMove>().canInput = false;
             }
             else
             {
                 PausePanel.SetActive(false);
-                Player.GetComponent<BlockMove>().canInput = true;
+                player.GetComponent<BlockMove>().canInput = true;
             }
         }
 
