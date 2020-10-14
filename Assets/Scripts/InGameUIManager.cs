@@ -28,7 +28,7 @@ public class InGameUIManager : MonoBehaviour
         if (isClear)
         {
             ClearPanel.SetActive(true);
-            Player.GetComponent<BlockMove>().canInput = false;
+            player.GetComponent<BlockMove>().canInput = false;
         }
         else
             ClearPanel.SetActive(false);
