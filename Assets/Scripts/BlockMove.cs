@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 public class BlockMove : MonoBehaviour
 {
     public GameObject player;
-    public AudioSource playerMoving;
     public bool canInput = true;
     private bool canMove = true;
 
@@ -17,6 +16,7 @@ public class BlockMove : MonoBehaviour
     {
         GetInput();
         ResetBlock();
+        Debug.DrawRay(this.transform.position, Vector3.forward * 1, Color.red, 1);
     }
 
     void GetInput()
@@ -26,25 +26,25 @@ public class BlockMove : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(0, -90, 0);
+                player.transform.eulerAngles = new Vector3(90, -90, 0);
                 Move(player);
             }
             else if (Input.GetKey(KeyCode.A))
             {
                 StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(0, -180, 0);
+                player.transform.eulerAngles = new Vector3(90, -180, 0);
                 Move(player);
             }
             else if (Input.GetKey(KeyCode.S))
             {
                 StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(0, 90, 0);
+                player.transform.eulerAngles = new Vector3(90, 90, 0);
                 Move(player);
             }
             else if (Input.GetKey(KeyCode.D))
             {
                 StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(0, 0, 0);
+                player.transform.eulerAngles = new Vector3(90, 0, 0);
                 Move(player);
             }
         }
@@ -61,7 +61,7 @@ public class BlockMove : MonoBehaviour
         movePos += transform.right * 1;
         movePos += transform.up * 1;
 
-        if (Physics.Raycast(movePos, Vector3.down, out moveHit, 0.7f))
+        if (Physics.Raycast(movePos, Vector3.forward, out moveHit, 0.7f))
         {
             if(moveHit.transform.name == "block1")
             {

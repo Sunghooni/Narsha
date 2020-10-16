@@ -4,48 +4,35 @@ using UnityEngine;
 
 public class ClearCheck : MonoBehaviour
 {
-    private int nameCnt = 1;
-    private int maxCnt = 3;
+    public GameObject[] checkBocks;
+    public IdentifyCode[] answerBocks;
     public bool winCheck = false;
+
+    private string answerCode = "START";
+    private string input;
 
     void Update()
     {
-        ArrayCheck(this.transform.position);
+        ArrayCheck();
     }
 
-    void ArrayCheck(Vector3 me)
+    void ArrayCheck()
     {
-        RaycastHit checkHit;
-        Vector3 newPos = me;
-        if (nameCnt == maxCnt)
+        RaycastHit hit;
+        for(int i = 0; i < checkBocks.Length; i++)
         {
-            winCheck = true;
-            return;
+            if(Physics.Raycast(checkBocks[i].transform.position, Vector3.up, out hit, 2))
+            {
+                IdentifyCode identifyCode = hit.transform.gameObject.GetComponent<IdentifyCode>();
+                input += identifyCode.code;
+            }
         }
-
-        nameCnt += 1;
-
-        Vector3 movePos = me;
-        movePos += -Vector3.forward * 1;
-        movePos += Vector3.up * 1;
-
-        if (Physics.Raycast(movePos, Vector3.down, out checkHit, 0.7f))
+        if (input != null && input.Equals(answerCode))
         {
-            if (checkHit.transform.name == "block" + nameCnt.ToString())
-            {
-                movePos += Vector3.up * -1;
-                ArrayCheck(movePos);
-            }
-            else
-            {
-                nameCnt = 1;
-                return;
-            }
+            Debug.Log("Clear");
+            winCheck = true;
         }
         else
-        {
-            nameCnt = 1;
-            return;
-        }
+            input = null;
     }
 }
