@@ -26,25 +26,25 @@ public class BlockMove : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(90, -90, 0);
+                player.transform.eulerAngles = new Vector3(-90, -90, 0);
                 Move(player);
             }
             else if (Input.GetKey(KeyCode.A))
             {
                 StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(90, -180, 0);
+                player.transform.eulerAngles = new Vector3(-90, -180, 0);
                 Move(player);
             }
             else if (Input.GetKey(KeyCode.S))
             {
                 StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(90, 90, 0);
+                player.transform.eulerAngles = new Vector3(-90, 90, 0);
                 Move(player);
             }
             else if (Input.GetKey(KeyCode.D))
             {
                 StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(90, 0, 0);
+                player.transform.eulerAngles = new Vector3(-90, 0, 0);
                 Move(player);
             }
         }

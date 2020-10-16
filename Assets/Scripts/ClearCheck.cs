@@ -21,7 +21,7 @@ public class ClearCheck : MonoBehaviour
         RaycastHit hit;
         for(int i = 0; i < checkBocks.Length; i++)
         {
-            if(Physics.Raycast(checkBocks[i].transform.position, Vector3.up, out hit, 2))
+            if(Physics.Raycast(checkBocks[i].transform.position, Vector3.up, out hit, 2) && hit.transform.tag != "Player")
             {
                 IdentifyCode identifyCode = hit.transform.gameObject.GetComponent<IdentifyCode>();
                 input += identifyCode.code;
