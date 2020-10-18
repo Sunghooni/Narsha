@@ -58,12 +58,11 @@ public class BlockMove : MonoBehaviour
 
         Vector3 movePos = me.transform.position;
         movePos += transform.right * 1;
-        movePos += transform.forward * 0.5f;
-        Debug.DrawRay(movePos, Vector3.down * 0.7f, Color.red, 4);
-        Debug.Log(movePos.x + " " + movePos.y + " " + movePos.z);
-        if (Physics.Raycast(movePos, Vector3.down, out moveHit, 0.5f))
+        movePos += transform.forward * 1f;
+
+        if (Physics.Raycast(movePos, Vector3.down, out moveHit, 1f))
         {
-            if(moveHit.transform.name == "block1")
+            if (moveHit.transform.tag.Equals("Unmovable"))
             {
                 canMove = false;
                 return;
@@ -73,7 +72,7 @@ public class BlockMove : MonoBehaviour
         }
         if(canMove)
         {
-            movePos -= transform.forward * 0.5f;
+            movePos -= transform.forward * 1f;
             me.transform.position = movePos;
             AudioManager.GetInstance().PlaySounds("BasicMove");
         }
