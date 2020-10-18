@@ -16,7 +16,6 @@ public class BlockMove : MonoBehaviour
     {
         GetInput();
         ResetBlock();
-        Debug.DrawRay(this.transform.position, Vector3.forward * 1, Color.red, 1);
     }
 
     void GetInput()
@@ -38,7 +37,7 @@ public class BlockMove : MonoBehaviour
             else if (Input.GetKey(KeyCode.S))
             {
                 StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(-90, 90, 0);
+                player.transform.eulerAngles = new Vector3(-90, 0, 90);
                 Move(player);
             }
             else if (Input.GetKey(KeyCode.D))
@@ -59,9 +58,10 @@ public class BlockMove : MonoBehaviour
 
         Vector3 movePos = me.transform.position;
         movePos += transform.right * 1;
-        movePos += transform.up * 1;
-
-        if (Physics.Raycast(movePos, Vector3.forward, out moveHit, 0.7f))
+        movePos += transform.forward * 0.5f;
+        Debug.DrawRay(movePos, Vector3.down * 0.7f, Color.red, 4);
+        Debug.Log(movePos.x + " " + movePos.y + " " + movePos.z);
+        if (Physics.Raycast(movePos, Vector3.down, out moveHit, 0.5f))
         {
             if(moveHit.transform.name == "block1")
             {
@@ -73,7 +73,7 @@ public class BlockMove : MonoBehaviour
         }
         if(canMove)
         {
-            movePos -= transform.up * 1;
+            movePos -= transform.forward * 0.5f;
             me.transform.position = movePos;
             AudioManager.GetInstance().PlaySounds("BasicMove");
         }
