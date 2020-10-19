@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
-public class StaticObject 
+public class StaticObject : MonoBehaviour
 {
-    private static GameObject instance;
+    private static StaticObject instance;
     private const String ObjectName = "StaticObject";
         
-    public static GameObject GetInstance()
+    public static StaticObject GetInstance()
     {
         if(instance == null)
         {
-            instance = GameObject.Find(ObjectName);
+            instance = GameObject.FindObjectOfType<StaticObject>();
             
             if(instance == null)
             {
-                instance = new GameObject(ObjectName);
+                instance = new GameObject(ObjectName).AddComponent<StaticObject>();
             }
         }
 

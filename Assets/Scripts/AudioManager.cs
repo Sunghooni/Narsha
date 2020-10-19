@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using UnityEditor.PackageManager.Requests;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -27,7 +25,7 @@ public class AudioManager : MonoBehaviour
         AudioSource audioPlayer = StaticObject.GetInstance().GetComponent<AudioSource>();
         if(audioPlayer == null)
         {
-            audioPlayer = StaticObject.GetInstance().AddComponent<AudioSource>();
+            audioPlayer = StaticObject.GetInstance().gameObject.AddComponent<AudioSource>();
         }
         foreach(AudioClip audio in Sounds)
         {
