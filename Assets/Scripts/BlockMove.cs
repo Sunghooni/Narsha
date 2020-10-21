@@ -14,8 +14,9 @@ public class BlockMove : MonoBehaviour
     private bool canMove = true;
     private bool isReleased = false;
     private Coroutine MoveCoroutine;
+    Vector2 InputAxis;
 
-    void FixedUpdate()
+    void Update()
     {
         GetInput();
         ResetBlock();
@@ -23,27 +24,24 @@ public class BlockMove : MonoBehaviour
 
     void GetInput()
     {
-        if(canInput)
+        float horz = Input.GetAxisRaw("Horizontal");
+        float vert = Input.GetAxisRaw("Vertical");
+        InputAxis = new Vector2(horz, vert);
+
+        if(InputAxis.sqrMagnitude > 0 && canInput)
         {
-            float horz = Input.GetAxisRaw("Horizontal");
-            float vert = Input.GetAxisRaw("Vertical");
-            Vector2 InputAxis = new Vector2(horz, vert);
-            if(InputAxis.sqrMagnitude > 0)
+            if(!isReleased)
             {
-                
-                if(!isReleased)
-                {
-                    isReleased = true;
-                    MoveCoroutine = StartCoroutine(KeepMoving(InputAxis, 0.3f));
-                }
+                isReleased = true;
+                MoveCoroutine = StartCoroutine(KeepMoving(InputAxis, 0.3f));
             }
-            else
+        }
+        else
+        {
+            isReleased = false;
+            if (MoveCoroutine != null)
             {
-                isReleased = false;
-                if (MoveCoroutine != null)
-                {
-                    StopCoroutine(MoveCoroutine);
-                }
+                StopCoroutine(MoveCoroutine);
             }
         }
     }
@@ -52,13 +50,13 @@ public class BlockMove : MonoBehaviour
     {
         while(isReleased)
         {
-            if (Input.x > 0)
+            if (InputAxis.x > 0)
                 player.transform.eulerAngles = new Vector3(-90, 0, 0);
-            else if (Input.x < 0)
+            else if (InputAxis.x < 0)
                 player.transform.eulerAngles = new Vector3(-90, -180, 0);
-            else if (Input.y > 0)
+            else if (InputAxis.y > 0)
                 player.transform.eulerAngles = new Vector3(-90, -90, 0);
-            else if (Input.y < 0)
+            else if (InputAxis.y < 0)
                 player.transform.eulerAngles = new Vector3(-90, 0, 90);
             Move(player);
             yield return new WaitForSeconds(WaitBetweenMove);
@@ -68,15 +66,12 @@ public class BlockMove : MonoBehaviour
     void Move(GameObject me)
     {
         RaycastHit moveHit;
+        Vector3 movePos = me.transform.position;
 
         if (me == player)
             canMove = true;
 
-        Vector3 movePos = me.transform.position;
-        movePos += transform.right * 1;
-        movePos += transform.forward * 1f;
-
-        if (Physics.Raycast(movePos, Vector3.down, out moveHit, 1f))
+        if (Physics.Raycast(movePos, transform.right, out moveHit, 1f))
         {
             if (moveHit.transform.tag.Equals("Unmovable"))
             {
@@ -88,7 +83,7 @@ public class BlockMove : MonoBehaviour
         }
         if(canMove)
         {
-            movePos -= transform.forward * 1f;
+            movePos += transform.right * 1f;
             me.transform.position = movePos;
             AudioManager.GetInstance().PlaySounds("BasicMove");
         }
