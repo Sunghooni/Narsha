@@ -7,6 +7,7 @@ public class ClearCheck : MonoBehaviour
     public GameObject[] checkBocks;
     public IdentifyCode[] answerBocks;
     public bool winCheck = false;
+    public InGameUIManager IGUI;
 
     private string answerCode = "START";
     private string input;
@@ -31,6 +32,7 @@ public class ClearCheck : MonoBehaviour
         {
             Debug.Log("Clear");
             winCheck = true;
+            IGUI.Clear();
         }
         else
             input = null;

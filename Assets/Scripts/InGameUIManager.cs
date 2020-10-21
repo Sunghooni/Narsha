@@ -10,8 +10,7 @@ public class InGameUIManager : MonoBehaviour
 
     private void Update()
     {
-        isClear = firstBlock.GetComponent<ClearCheck>().winCheck;
-        if(Input.GetKeyDown(KeyCode.Escape) && isClear == false)
+        if (Input.GetKeyDown(KeyCode.Escape) && ClearPanel.activeInHierarchy)
         {
             if (!PausePanel.activeInHierarchy)
             {
@@ -24,21 +23,16 @@ public class InGameUIManager : MonoBehaviour
                 player.GetComponent<BlockMove>().canInput = true;
             }
         }
-
-        if (isClear)
-        {
-            ClearPanel.SetActive(true);
-            player.GetComponent<BlockMove>().canInput = false;
-        }
-        else
-            ClearPanel.SetActive(false);
-
     }
 
     public void BackToStage()
     {
         SceneManager.LoadScene("Stage");
     }
+    public void Clear()
+    {
+        ClearPanel.SetActive(true);
+        player.GetComponent<BlockMove>().canInput = false;
+    }
 
-    
 }
