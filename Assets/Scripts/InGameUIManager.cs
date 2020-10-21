@@ -13,7 +13,7 @@ public class InGameUIManager : MonoBehaviour
         isClear = firstBlock.GetComponent<ClearCheck>().winCheck;
         if(Input.GetKeyDown(KeyCode.Escape) && isClear == false)
         {
-            if (!PausePanel.active)
+            if (!PausePanel.activeInHierarchy)
             {
                 PausePanel.SetActive(true);
                 player.GetComponent<BlockMove>().canInput = false;
