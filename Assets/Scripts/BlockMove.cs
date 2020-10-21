@@ -10,9 +10,12 @@ public class BlockMove : MonoBehaviour
 {
     public GameObject player;
     public bool canInput = true;
+    //private const float tolerance = 0.3f; // 허용 오차범위 (공차)
     private bool canMove = true;
+    private bool isReleased = false;
+    private Coroutine MoveCoroutine;
 
-    void Update()
+    void FixedUpdate()
     {
         GetInput();
         ResetBlock();
@@ -22,30 +25,43 @@ public class BlockMove : MonoBehaviour
     {
         if(canInput)
         {
-            if (Input.GetKey(KeyCode.W))
+            float horz = Input.GetAxisRaw("Horizontal");
+            float vert = Input.GetAxisRaw("Vertical");
+            Vector2 InputAxis = new Vector2(horz, vert);
+            if(InputAxis.sqrMagnitude > 0)
             {
-                StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(-90, -90, 0);
-                Move(player);
+                
+                if(!isReleased)
+                {
+                    isReleased = true;
+                    MoveCoroutine = StartCoroutine(KeepMoving(InputAxis, 0.3f));
+                }
             }
-            else if (Input.GetKey(KeyCode.A))
+            else
             {
-                StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(-90, -180, 0);
-                Move(player);
+                isReleased = false;
+                if (MoveCoroutine != null)
+                {
+                    StopCoroutine(MoveCoroutine);
+                }
             }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                StartCoroutine(InputCheck());
-                player.transform.eulerAngles = new Vector3(-90, 0, 90);
-                Move(player);
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                StartCoroutine(InputCheck());
+        }
+    }
+
+    IEnumerator KeepMoving(Vector2 Input, float WaitBetweenMove)
+    {
+        while(isReleased)
+        {
+            if (Input.x > 0)
                 player.transform.eulerAngles = new Vector3(-90, 0, 0);
-                Move(player);
-            }
+            else if (Input.x < 0)
+                player.transform.eulerAngles = new Vector3(-90, -180, 0);
+            else if (Input.y > 0)
+                player.transform.eulerAngles = new Vector3(-90, -90, 0);
+            else if (Input.y < 0)
+                player.transform.eulerAngles = new Vector3(-90, 0, 90);
+            Move(player);
+            yield return new WaitForSeconds(WaitBetweenMove);
         }
     }
 
@@ -77,23 +93,6 @@ public class BlockMove : MonoBehaviour
             AudioManager.GetInstance().PlaySounds("BasicMove");
         }
         return;
-    }
-
-    IEnumerator InputCheck()
-    {
-        canInput = false;
-        float timer = 0;
-
-        while(true)
-        {
-            timer += Time.deltaTime;
-            if(timer >= 0.3f)
-            {
-                canInput = true;
-                break;
-            }
-            yield return null;
-        }
     }
 
     void ResetBlock()

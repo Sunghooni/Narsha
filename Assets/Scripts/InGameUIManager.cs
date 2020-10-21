@@ -40,4 +40,5 @@ public class InGameUIManager : MonoBehaviour
         SceneManager.LoadScene("Stage");
     }
 
+    
 }

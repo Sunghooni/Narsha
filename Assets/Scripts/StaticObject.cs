@@ -15,7 +15,7 @@ public class StaticObject : MonoBehaviour
     {
         if(instance == null)
         {
-            instance = GameObject.FindObjectOfType<StaticObject>();
+            instance = FindObjectOfType<StaticObject>();
             
             if(instance == null)
             {
