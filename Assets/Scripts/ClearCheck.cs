@@ -9,7 +9,7 @@ public class ClearCheck : MonoBehaviour
     public bool winCheck = false;
     public InGameUIManager IGUI;
 
-    private string answerCode = "START";
+    public string answerCode = "START";
     private string input;
 
     void Update()
