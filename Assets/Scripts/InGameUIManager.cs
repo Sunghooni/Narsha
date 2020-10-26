@@ -10,7 +10,7 @@ public class InGameUIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && ClearPanel.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.Escape) && !ClearPanel.activeInHierarchy)
         {
             if (!PausePanel.activeInHierarchy)
             {
