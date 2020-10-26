@@ -8,9 +8,8 @@ public class CameraMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*
         var pos = player.transform.position;
-        gameObject.transform.position = new Vector3(pos.x, pos.y + 5.6f, pos.z - 2.5f);
-        */
+        Vector3 target = new Vector3(pos.x, pos.y + 5.6f, pos.z - 3.5f);
+        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, target, Time.deltaTime);
     }
 }
