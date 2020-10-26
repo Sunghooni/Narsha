@@ -12,7 +12,7 @@ public class BlockMove : MonoBehaviour
     public bool canInput = true;
     //private const float tolerance = 0.3f; // 허용 오차범위 (공차)
     private bool canMove = true;
-    private bool isReleased = false;
+    private bool isPressed = false;
     private Coroutine MoveCoroutine;
     Vector2 InputAxis;
 
@@ -30,15 +30,15 @@ public class BlockMove : MonoBehaviour
 
         if(InputAxis.sqrMagnitude > 0 && canInput)
         {
-            if(!isReleased)
+            if(!isPressed)
             {
-                isReleased = true;
+                isPressed = true;
                 MoveCoroutine = StartCoroutine(KeepMoving(InputAxis, 0.3f));
             }
         }
         else
         {
-            isReleased = false;
+            isPressed = false;
             if (MoveCoroutine != null)
             {
                 StopCoroutine(MoveCoroutine);
@@ -48,7 +48,7 @@ public class BlockMove : MonoBehaviour
 
     IEnumerator KeepMoving(Vector2 Input, float WaitBetweenMove)
     {
-        while(isReleased)
+        while(isPressed)
         {
             if (InputAxis.x > 0)
                 player.transform.eulerAngles = new Vector3(-90, 0, 0);
