@@ -78,12 +78,9 @@ public class BlockMove : MonoBehaviour
     {
         Vector2 normalized = vec.normalized;
         float Acos = Mathf.Acos(normalized.x) * Mathf.Rad2Deg;
-        float Asin = Mathf.Asin(normalized.y) * Mathf.Rad2Deg;
-        float AcosSign = Mathf.Sign(Acos);
-        float AsinSign = Mathf.Sign(Asin);
+        float SinSign = Mathf.Sign(vec.y);
 
-
-        float rot = Mathf.Max(Acos, Asin) * AcosSign * AsinSign;
+        float rot = Acos * SinSign;
         return rot;
     }
 
