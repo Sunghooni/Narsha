@@ -57,8 +57,8 @@ public class BlockMove : MonoBehaviour
     {
         while(isPressed)
         {
-            float rot = VectorToDegree(new Vector2(input.x, input.y));
-            player.transform.eulerAngles = new Vector3(initialRotator.x, -1 * DegreeLimit(rot, 90));
+            float degree = MathFunctionLibrary.VectorToDegree(new Vector2(input.x, input.y));
+            player.transform.eulerAngles = new Vector3(initialRotator.x, -1 * MathFunctionLibrary.SnapByUnit(degree, 90));
             /*
             if (InputAxis.x > 0)
                 player.transform.eulerAngles = new Vector3(-90, 0, 0);
@@ -74,20 +74,9 @@ public class BlockMove : MonoBehaviour
         }
     }
 
-    float VectorToDegree(Vector2 vec)
-    {
-        Vector2 normalized = vec.normalized;
-        float Acos = Mathf.Acos(normalized.x) * Mathf.Rad2Deg;
-        float SinSign = Mathf.Sign(vec.y);
+    
 
-        float rot = Acos * SinSign;
-        return rot;
-    }
-
-    float DegreeLimit(float rot, float unit)
-    {
-        return Mathf.Round(rot / unit) * unit;
-    }
+    
 
     void Move(GameObject me)
     {
