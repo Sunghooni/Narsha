@@ -59,6 +59,7 @@ public class BlockMove : MonoBehaviour
         {
             float degree = MathFunctionLibrary.VectorToDegree(new Vector2(input.x, input.y));
             player.transform.eulerAngles = new Vector3(initialRotator.x, -1 * MathFunctionLibrary.SnapByUnit(degree, 90));
+            //Test
             /*
             if (InputAxis.x > 0)
                 player.transform.eulerAngles = new Vector3(-90, 0, 0);
