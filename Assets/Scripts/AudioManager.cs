@@ -36,4 +36,14 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+    public void VolumeSize(float size)
+    {
+        AudioSource audioPlayer = StaticObject.GetInstance().GetComponent<AudioSource>();
+        if (audioPlayer == null)
+        {
+            audioPlayer = StaticObject.GetInstance().gameObject.AddComponent<AudioSource>();
+        }
+        audioPlayer.volume = size;
+    }
 }
