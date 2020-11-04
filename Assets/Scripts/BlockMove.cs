@@ -40,7 +40,7 @@ public class BlockMove : MonoBehaviour
             if(!isPressed)
             {
                 isPressed = true;
-                MoveCoroutine = StartCoroutine(KeepMoving(InputAxis, 0.3f));
+                MoveCoroutine = StartCoroutine(KeepMoving(0.3f));
             }
         }
         else
@@ -53,11 +53,11 @@ public class BlockMove : MonoBehaviour
         }
     }
 
-    IEnumerator KeepMoving(Vector2 input, float WaitBetweenMove)
+    IEnumerator KeepMoving(float WaitBetweenMove)
     {
         while(isPressed)
         {
-            float degree = MathFunctionLibrary.VectorToDegree(new Vector2(input.x, input.y));
+            float degree = MathFunctionLibrary.VectorToDegree(new Vector2(InputAxis.x, InputAxis.y));
             player.transform.eulerAngles = new Vector3(initialRotator.x, -1 * MathFunctionLibrary.SnapByUnit(degree, 90));
             //Test
             /*

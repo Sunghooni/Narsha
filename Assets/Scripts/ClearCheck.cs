@@ -32,7 +32,7 @@ public class ClearCheck : MonoBehaviour
         {
             Debug.Log("Clear");
             winCheck = true;
-            IGUI.Clear();
+            //IGUI.Clear();
         }
         else
             input = null;
