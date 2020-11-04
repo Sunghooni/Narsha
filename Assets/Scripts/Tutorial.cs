@@ -6,81 +6,71 @@ using UnityEngine.UI;
 public class Tutorial : MonoBehaviour
 {
     string[] TutorialText;
-    bool oneClear = false, twoClear = false, threeClear = false;
+    int idx = 0;
     public Text content;
-    public GameObject W, A, S, D, Arrow, Block;
-    float CurTime = 0;
+    public GameObject TutorialPanel, WASD, BlockArrow, AnswerBlockArrow;
     private void Awake()
     {
         TutorialText = new string[] { "WASD를 눌러 움직여보세요" ,
                                                               "블럭을 밀어 옮겨보세요" ,
-                                                              "정답블럭칸에 START를 맞춰보세요!"};
+                                                              "R키를 눌러 다시 시작 할 수 있어요",
+                                                              "ESC키를 눌러 일시정지 할 수 있어요",
+                                                              "정답블럭칸에 START를 맞춰보세요!",};
+        content.text = TutorialText[idx];
+        WASD.SetActive(false);
+        BlockArrow.SetActive(false);
+        AnswerBlockArrow.SetActive(false);
+        FindObjectOfType<BlockMove>().canInput = false;
     }
 
     private void Start()
     {
-        content.text = TutorialText[0];
-        Arrow.SetActive(false);
+        ShowObject();
     }
+
     void Update()
     {
         ControlText();
-        if (!oneClear)
-        {
-            ClearOne();
-        }
-        if (!twoClear)
-        {
-            ClearTwo();
-        }
+        //ShowObject();
     }
 
-    void ControlText()
-    {
-        if (oneClear)
-        {
-            if (twoClear)
-            {
-                content.text = TutorialText[2];
+    private void ControlText()
+     {
+        if(Input.GetKeyDown(KeyCode.Space))
+          {
+            idx++;
+            if (idx > 4)
+               {
+                AnswerBlockArrow.SetActive(false);
+                TutorialPanel.SetActive(false);
+                FindObjectOfType<BlockMove>().canInput = true;
                 return;
-            }
-            content.text = TutorialText[1];
-        }
+              }
+            content.text = TutorialText[idx];
+            ShowObject();
+           
+           }
 
+      }
 
-    }
-
-    void ClearOne()
+    private void ShowObject()
     {
-        if (!W.activeInHierarchy && !A.activeInHierarchy && !S.activeInHierarchy && !D.activeInHierarchy)
+        if(idx == 0)
         {
-            oneClear = true;
-            Arrow.SetActive(true);
+            WASD.SetActive(true);
         }
-
-        if (Input.GetKeyDown(KeyCode.W))
-            W.SetActive(false);
-        if (Input.GetKeyDown(KeyCode.A))
-            A.SetActive(false);
-        if (Input.GetKeyDown(KeyCode.S))
-            S.SetActive(false);
-        if (Input.GetKeyDown(KeyCode.D))
-            D.SetActive(false);
-
-    }
-
-    void ClearTwo()
-    {
-        if (Block.transform.position.x != -1.1516)
+        if(idx == 1)
         {
-            Arrow.SetActive(false);
-            twoClear = true;
+            WASD.SetActive(false);
+            BlockArrow.SetActive(true);
+        }
+        if(idx == 2 || idx == 3)
+        {
+            BlockArrow.SetActive(false);
+        }
+        if(idx == 4)
+        {
+            AnswerBlockArrow.SetActive(true);
         }
     }
-
-    void ClearThree()
-    {
-
-    }
-
 }
