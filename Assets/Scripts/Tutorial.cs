@@ -8,7 +8,7 @@ public class Tutorial : MonoBehaviour
     string[] TutorialText;
     int idx = 0;
     public Text content;
-    public GameObject TutorialPanel, WASD, BlockArrow, AnswerBlockArrow;
+    public GameObject TutorialPanel, WASD, BlockArrow, AnswerBlockArrow, ClearPanel;
     private void Awake()
     {
         TutorialText = new string[] { "WASD를 눌러 움직여보세요" ,
@@ -39,7 +39,7 @@ public class Tutorial : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
           {
             idx++;
-            if (idx > 4)
+            if (idx > 4 && !ClearPanel.activeInHierarchy)
                {
                 AnswerBlockArrow.SetActive(false);
                 TutorialPanel.SetActive(false);
