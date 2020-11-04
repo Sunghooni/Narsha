@@ -32,27 +32,26 @@ public class Tutorial : MonoBehaviour
     {
         ControlText();
         //ShowObject();
-        Debug.Log(idx);
     }
 
     private void ControlText()
-    {
-      
+     {
         if(Input.GetKeyDown(KeyCode.Space))
-        {
-           // idx++;
+          {
+            idx++;
             if (idx > 4)
-            {
+               {
                 AnswerBlockArrow.SetActive(false);
                 TutorialPanel.SetActive(false);
                 FindObjectOfType<BlockMove>().canInput = true;
                 return;
-            }
-            content.text = TutorialText[idx++];
+              }
+            content.text = TutorialText[idx];
             ShowObject();
-        }
+           
+           }
 
-    }
+      }
 
     private void ShowObject()
     {
