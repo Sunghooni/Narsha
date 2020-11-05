@@ -20,7 +20,8 @@ public class InGameUIManager : MonoBehaviour
             else
             {
                 PausePanel.SetActive(false);
-                player.GetComponent<BlockMove>().canInput = true;
+                if(FindObjectOfType<Tutorial>().idx > 4)
+                    player.GetComponent<BlockMove>().canInput = true;
             }
         }
     }

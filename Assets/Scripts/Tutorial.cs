@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Tutorial : MonoBehaviour
 {
     string[] TutorialText;
-    int idx = 0;
+    public int idx = 0;
     public Text content;
     public GameObject TutorialPanel, WASD, BlockArrow, AnswerBlockArrow, ClearPanel;
     private void Awake()
