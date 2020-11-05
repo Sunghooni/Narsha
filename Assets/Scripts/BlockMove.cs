@@ -59,25 +59,10 @@ public class BlockMove : MonoBehaviour
         {
             float degree = MathFunctionLibrary.VectorToDegree(new Vector2(InputAxis.x, InputAxis.y));
             player.transform.eulerAngles = new Vector3(initialRotator.x, -1 * MathFunctionLibrary.SnapByUnit(degree, 90));
-            //Test
-            /*
-            if (InputAxis.x > 0)
-                player.transform.eulerAngles = new Vector3(-90, 0, 0);
-            else if (InputAxis.x < 0)
-                player.transform.eulerAngles = new Vector3(-90, -180, 0);
-            else if (InputAxis.y > 0)
-                player.transform.eulerAngles = new Vector3(-90, -90, 0);
-            else if (InputAxis.y < 0)
-                player.transform.eulerAngles = new Vector3(-90, 90, 0);
-            */
             Move(player);
             yield return new WaitForSeconds(WaitBetweenMove);
         }
     }
-
-    
-
-    
 
     void Move(GameObject me)
     {
@@ -110,5 +95,16 @@ public class BlockMove : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag.Equals("WaterBlocks"))
+        {
+            Debug.Log("Died");
+            canInput = false;
+            //Retry_UI 띄워주기
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
