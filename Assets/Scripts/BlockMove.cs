@@ -25,6 +25,7 @@ public class BlockMove : MonoBehaviour
 
     void Update()
     {
+        isGround();
         GetInput();
         ResetBlock();
     }
@@ -95,6 +96,14 @@ public class BlockMove : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void isGround()
+    {
+        if(!Physics.Raycast(gameObject.transform.position ,Vector3.down, 1))
+        {
+            canInput = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
