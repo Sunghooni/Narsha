@@ -20,7 +20,7 @@ public class InGameUIManager : MonoBehaviour
             else
             {
                 PausePanel.SetActive(false);
-                if(FindObjectOfType<Tutorial>().idx > 4)
+                if (FindObjectOfType<Tutorial>().idx > 4)
                     player.GetComponent<BlockMove>().canInput = true;
             }
         }
@@ -34,6 +34,11 @@ public class InGameUIManager : MonoBehaviour
     {
         ClearPanel.SetActive(true);
         player.GetComponent<BlockMove>().canInput = false;
+    }
+
+    public void ScaleAnimation() //도움말 창을 띄울때 필요한 함수입니다.
+    {
+
     }
 
 }
