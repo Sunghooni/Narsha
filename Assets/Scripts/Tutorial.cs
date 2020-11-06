@@ -11,11 +11,11 @@ public class Tutorial : MonoBehaviour
     public GameObject TutorialPanel, WASD, BlockArrow, AnswerBlockArrow, ClearPanel;
     private void Awake()
     {
-        TutorialText = new string[] { "WASD를 눌러 움직여보세요" ,
+        TutorialText = new string[] { "WASD를 눌러 움직일 수 있어요" ,
                                                               "블럭을 밀어 옮겨보세요" ,
                                                               "R키를 눌러 다시 시작 할 수 있어요",
                                                               "ESC키를 눌러 일시정지 할 수 있어요",
-                                                              "정답블럭칸에 START를 맞춰보세요!",};
+                                                              "정답블럭칸에 START를 맞춰보세요!"};
         content.text = TutorialText[idx];
         WASD.SetActive(false);
         BlockArrow.SetActive(false);
@@ -55,22 +55,24 @@ public class Tutorial : MonoBehaviour
 
     private void ShowObject()
     {
-        if(idx == 0)
+        switch(idx)
         {
-            WASD.SetActive(true);
-        }
-        if(idx == 1)
-        {
-            WASD.SetActive(false);
-            BlockArrow.SetActive(true);
-        }
-        if(idx == 2 || idx == 3)
-        {
-            BlockArrow.SetActive(false);
-        }
-        if(idx == 4)
-        {
-            AnswerBlockArrow.SetActive(true);
+            case 0:
+                WASD.SetActive(true);
+                return;
+            case 1:
+                WASD.SetActive(false);
+                BlockArrow.SetActive(true);
+                return;
+            case 2:
+                BlockArrow.SetActive(false);
+                return;
+            case 3:
+                BlockArrow.SetActive(false);
+                return;
+            case 4:
+                AnswerBlockArrow.SetActive(true);
+                return;
         }
     }
 }
