@@ -39,7 +39,7 @@ public class InGameUIManager : MonoBehaviour
 
     public void ReSpawn()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void BackToStage()

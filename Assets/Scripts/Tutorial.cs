@@ -8,7 +8,7 @@ public class Tutorial : MonoBehaviour
     string[] TutorialText;
     public int idx = 0;
     public Text content;
-    public GameObject TutorialPanel, WASD, BlockArrow, AnswerBlockArrow, ClearPanel;
+    public GameObject TutorialPanel, BlockArrow, AnswerBlockArrow, ClearPanel;
     private void Awake()
     {
         TutorialText = new string[] { "WASD를 눌러 움직일 수 있어요" ,
@@ -17,7 +17,6 @@ public class Tutorial : MonoBehaviour
                                                               "ESC키를 눌러 일시정지 할 수 있어요",
                                                               "정답블럭칸에 START를 맞춰보세요!"};
         content.text = TutorialText[idx];
-        WASD.SetActive(false);
         BlockArrow.SetActive(false);
         AnswerBlockArrow.SetActive(false);
         FindObjectOfType<BlockMove>().canInput = false;
@@ -58,10 +57,8 @@ public class Tutorial : MonoBehaviour
         switch(idx)
         {
             case 0:
-                WASD.SetActive(true);
                 return;
             case 1:
-                WASD.SetActive(false);
                 BlockArrow.SetActive(true);
                 return;
             case 2:
