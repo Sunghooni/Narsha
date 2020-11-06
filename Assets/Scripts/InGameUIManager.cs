@@ -44,7 +44,7 @@ public class InGameUIManager : MonoBehaviour
 
     public void BackToStage()
     {
-        SceneManager.LoadScene("Stage");
+        SceneManager.LoadScene("StageSelect");
     }
     public void Clear()
     {
