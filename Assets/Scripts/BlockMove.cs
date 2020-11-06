@@ -1,9 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using UnityEditor;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -62,6 +57,7 @@ public class BlockMove : MonoBehaviour
             float degree = MathFunctionLibrary.VectorToDegree(new Vector2(InputAxis.x, InputAxis.y));
             player.transform.eulerAngles = new Vector3(initialRotator.x, -1 * MathFunctionLibrary.SnapByUnit(degree, 90));
             Move(player);
+            Debug.Log("oifjieow");
             yield return new WaitForSeconds(WaitBetweenMove);
         }
     }

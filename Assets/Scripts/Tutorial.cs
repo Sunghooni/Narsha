@@ -43,6 +43,7 @@ public class Tutorial : MonoBehaviour
                 AnswerBlockArrow.SetActive(false);
                 TutorialPanel.SetActive(false);
                 FindObjectOfType<BlockMove>().canInput = true;
+                Debug.Log(FindObjectOfType<BlockMove>().gameObject.name);
                 return;
               }
             content.text = TutorialText[idx];

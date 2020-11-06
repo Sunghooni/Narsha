@@ -46,6 +46,12 @@ public class InGameUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("StageSelect");
     }
+
+    public void BackToMain()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
     public void Clear()
     {
         ClearPanel.SetActive(true);
