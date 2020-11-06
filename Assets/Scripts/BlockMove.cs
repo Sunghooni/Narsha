@@ -17,6 +17,7 @@ public class BlockMove : MonoBehaviour
     private Coroutine MoveCoroutine;
     Vector2 InputAxis;
     private Vector3 initialRotator;
+    private float delay = 0.3f;
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class BlockMove : MonoBehaviour
             if(!isPressed)
             {
                 isPressed = true;
-                MoveCoroutine = StartCoroutine(KeepMoving(0.3f));
+                MoveCoroutine = StartCoroutine(KeepMoving(delay));
             }
         }
         else
@@ -85,7 +86,7 @@ public class BlockMove : MonoBehaviour
         }
         if(canMove)
         {
-            movePos += transform.right * 1f;
+            movePos += transform.right;
             me.transform.position = movePos;
             AudioManager.GetInstance().PlaySounds("BasicMove");
         }
