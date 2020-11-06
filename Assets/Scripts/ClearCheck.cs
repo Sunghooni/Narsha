@@ -30,9 +30,18 @@ public class ClearCheck : MonoBehaviour
         }
         if (input != null && input.Equals(answerCode))
         {
-            Debug.Log("Clear");
-            winCheck = true;
-            //IGUI.Clear();
+            if(answerCode == "START")
+            {
+                Debug.Log("Clear");
+                winCheck = true;
+                IGUI.Clear();
+            }
+            else
+            {
+                winCheck = true;
+                if (FindObjectOfType<ShowClear>().isClear)
+                    IGUI.Clear();
+            }
         }
         else
             input = null;

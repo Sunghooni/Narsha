@@ -112,8 +112,7 @@ public class BlockMove : MonoBehaviour
         {
             Debug.Log("Died");
             canInput = false;
-            //Retry_UI 띄워주기
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            FindObjectOfType<InGameUIManager>().Die();
         }
     }
 }
