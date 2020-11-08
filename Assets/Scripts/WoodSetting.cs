@@ -5,17 +5,20 @@ using UnityEngine;
 public class WoodSetting : MonoBehaviour
 {
     Transform WoodTransform;
-    Rigidbody WoodRigidBody;
 
     private void Awake()
     {
         WoodTransform = GetComponent<Transform>();
-        WoodRigidBody = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (WoodTransform.position.y <= 1.1f)
-            WoodRigidBody.useGravity = false;
+        if(WoodTransform.position.y >= 0.75f)
+            MoveDown();
+    }
+
+    void MoveDown()
+    {
+        transform.Translate(-Vector3.right * 5 * Time.deltaTime);
     }
 }

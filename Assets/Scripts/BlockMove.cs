@@ -101,7 +101,7 @@ public class BlockMove : MonoBehaviour
 
     void isGround()
     {
-        if(!Physics.Raycast(gameObject.transform.position ,Vector3.down, 1))
+        if (!Physics.Raycast(gameObject.transform.position, Vector3.down, 1))
         {
             canInput = false;
         }
