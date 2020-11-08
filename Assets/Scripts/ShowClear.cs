@@ -6,9 +6,11 @@ public class ShowClear : MonoBehaviour
 {
     public Camera MainCamera, ClearCamera;
     public GameObject ClearObject;
+    public GameObject[] StageOneObject;
     public Vector3 InstantiatePosition;
     [SerializeField]
     int StageNumber;
+    int StageOneShowWoodIdx = 0;
     public bool isClear;
 
     private void Awake()
@@ -20,23 +22,41 @@ public class ShowClear : MonoBehaviour
     {
         if (FindObjectOfType<ClearCheck>().winCheck)
         {
-            switch (StageNumber)
+            if (!isClear)
             {
-                case 1:
-                    MainCamera.enabled = false;
-                    ClearCamera.enabled = true;
-                    Invoke("StageOneClear", 2.0f);
-                    isClear = true;
-                    return;
-                case 2:
-                    return;
+                ClearCamera.enabled = true;
+                MainCamera.enabled = false;
+
+                switch (StageNumber)
+                   {
+                    case 1:
+                        StageOne();
+                        break;
+                    }
             }
         }
     }
 
     void StageOneClear()
     {
-        Instantiate(ClearObject, InstantiatePosition, Quaternion.identity);
-        
+        StageOneObject[StageOneShowWoodIdx].SetActive(true);
+        ++StageOneShowWoodIdx;
+        Debug.Log(StageOneShowWoodIdx); 
+    }
+
+    void StageOne()
+    {
+        isClear = true;
+        for (int i = 0; i < StageOneObject.Length; i++)
+        {
+            Invoke("StageOneClear",  i);
+        }
+        Invoke("StageClearEnd", 7.0f);
+    }
+
+    void StageClearEnd()
+    {
+        ClearCamera.enabled = false;
+        MainCamera.enabled = true;
     }
 }
