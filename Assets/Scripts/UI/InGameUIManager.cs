@@ -56,12 +56,14 @@ public class InGameUIManager : MonoBehaviour
 
     public void Clear()
     {
-        ClearPanel.SetActive(true);
         player.GetComponent<BlockMove>().canInput = false;
+        ClearPanel.SetActive(true);
     }
 
     public void OnClickHelp()
     {
+        if (FindObjectOfType<Tutorial>().idx > 5)
+            player.GetComponent<BlockMove>().canInput = true;
         if (!HelpSelect)
         {
             this.gameObject.SetActive(false);

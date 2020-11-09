@@ -47,6 +47,7 @@ public class ShowClear : MonoBehaviour
     void StageOne()
     {
         isClear = true;
+        FindObjectOfType<BlockMove>().canInput = false;
         for (int i = 0; i < StageOneObject.Length; i++)
         {
             Invoke("StageOneClear",  i / 1.5f);
@@ -56,6 +57,7 @@ public class ShowClear : MonoBehaviour
 
     void StageClearEnd()
     {
+        FindObjectOfType<BlockMove>().canInput = true;
         ClearCamera.enabled = false;
         MainCamera.enabled = true;
     }

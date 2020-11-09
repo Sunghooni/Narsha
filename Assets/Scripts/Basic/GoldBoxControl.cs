@@ -45,6 +45,6 @@ public class GoldBoxControl : MonoBehaviour
 
     private void ShowClearPanel()
     {
-        ClearPanel.SetActive(true);
+        FindObjectOfType<InGameUIManager>().Clear();
     }
 }
