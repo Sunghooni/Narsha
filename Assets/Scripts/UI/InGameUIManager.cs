@@ -18,6 +18,7 @@ public class InGameUIManager : MonoBehaviour
             {
                 PausePanel.SetActive(true);
                 player.GetComponent<BlockMove>().canInput = false;
+                Time.timeScale = 0f;
             }
             else
             {
@@ -25,10 +26,16 @@ public class InGameUIManager : MonoBehaviour
                 if (FindObjectOfType<ClearCheck>().answerCode == "START")
                 {
                     if (FindObjectOfType<Tutorial>().idx > 5)
+                    {
                         player.GetComponent<BlockMove>().canInput = true;
+                        Time.timeScale = 1f;
+                    }
                 }
                 else
+                {
                     player.GetComponent<BlockMove>().canInput = true;
+                    Time.timeScale = 1f;
+                }
             }
         }
     }
@@ -62,20 +69,41 @@ public class InGameUIManager : MonoBehaviour
 
     public void OnClickHelp()
     {
-        if (FindObjectOfType<Tutorial>().idx > 5)
-            player.GetComponent<BlockMove>().canInput = true;
-        if (!HelpSelect)
+        if (FindObjectOfType<ClearCheck>().answerCode == "START")
         {
-            this.gameObject.SetActive(false);
-            ShowHelpImage.SetActive(true);
-            HelpSelect = true;
+            if (FindObjectOfType<Tutorial>().idx > 5)
+            {
+                if (!HelpSelect)
+                {
+                    this.gameObject.SetActive(false);
+                    ShowHelpImage.SetActive(true);
+                    HelpSelect = true;
+                }
+                else
+                {
+                    this.gameObject.SetActive(true);
+                    ShowHelpImage.SetActive(false);
+                    HelpSelect = false;
+                }
+                ShowHelpImage.GetComponentInChildren<Text>().text = HelpMessage;
+            }
         }
         else
         {
-            this.gameObject.SetActive(true);
-            ShowHelpImage.SetActive(false);
-            HelpSelect = false;
+            if (!HelpSelect)
+            {
+                this.gameObject.SetActive(false);
+                ShowHelpImage.SetActive(true);
+                HelpSelect = true;
+            }
+            else
+            {
+                this.gameObject.SetActive(true);
+                ShowHelpImage.SetActive(false);
+                HelpSelect = false;
+            }
+            ShowHelpImage.GetComponentInChildren<Text>().text = HelpMessage;
         }
-        ShowHelpImage.GetComponentInChildren<Text>().text = HelpMessage;
+
     }
 }
