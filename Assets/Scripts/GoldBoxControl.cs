@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GoldBoxControl : MonoBehaviour
 {
-    public GameObject GoldBoxPart, GoldBox;
+    public GameObject GoldBoxPart, GoldBox, ClearPanel;
     Rigidbody GoldBoxRigidBody;
     bool isPlayer = false;
+    public bool Clear = false;
 
     private void Awake()
     {
@@ -15,8 +16,12 @@ public class GoldBoxControl : MonoBehaviour
 
     private void Update()
     {
+        if(isPlayer)
+        {
+            GoldBoxAnim();
+            Invoke("ShowClearPanel", 0.5f);
+        }
         Debug.Log(GoldBoxPart.transform.rotation.z);
-        GoldBoxAnim();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,5 +41,10 @@ public class GoldBoxControl : MonoBehaviour
         {
             GoldBoxPart.transform.Rotate(-Vector3.forward * 1000.0f * Time.deltaTime);
         }
+    }
+
+    private void ShowClearPanel()
+    {
+        ClearPanel.SetActive(true);
     }
 }

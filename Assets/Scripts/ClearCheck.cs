@@ -39,8 +39,6 @@ public class ClearCheck : MonoBehaviour
             else
             {
                 winCheck = true;
-                if (FindObjectOfType<ShowClear>().isClear)
-                    IGUI.Clear();
             }
         }
         else
