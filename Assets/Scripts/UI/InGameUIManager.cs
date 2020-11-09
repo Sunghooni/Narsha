@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InGameUIManager : MonoBehaviour
 {
-    public GameObject PausePanel, ClearPanel, DiePanel,  firstBlock, player, Help;
-    bool isClear;
+    public GameObject PausePanel, ClearPanel, DiePanel,  firstBlock, player, Help, ShowHelpImage;
+    public string HelpMessage;
+    bool HelpSelect = false;
 
     private void Update()
     {
@@ -22,7 +24,7 @@ public class InGameUIManager : MonoBehaviour
                 PausePanel.SetActive(false);
                 if (FindObjectOfType<ClearCheck>().answerCode == "START")
                 {
-                    if (FindObjectOfType<Tutorial>().idx > 4)
+                    if (FindObjectOfType<Tutorial>().idx > 5)
                         player.GetComponent<BlockMove>().canInput = true;
                 }
                 else
@@ -58,12 +60,20 @@ public class InGameUIManager : MonoBehaviour
         player.GetComponent<BlockMove>().canInput = false;
     }
 
-    public void ScaleAnimation() //도움말 창을 띄울때 필요한 함수입니다.
+    public void OnClickHelp()
     {
-        float Timer = 0;
-        Help.transform.localScale = Vector3.one;
-
-        Help.transform.localScale = Vector3.one * (1 + Timer);
+        if (!HelpSelect)
+        {
+            this.gameObject.SetActive(false);
+            ShowHelpImage.SetActive(true);
+            HelpSelect = true;
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+            ShowHelpImage.SetActive(false);
+            HelpSelect = false;
+        }
+        ShowHelpImage.GetComponentInChildren<Text>().text = HelpMessage;
     }
-
 }

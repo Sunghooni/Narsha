@@ -14,6 +14,7 @@ public class Tutorial : MonoBehaviour
         TutorialText = new string[] { "WASD를 눌러 움직일 수 있어요" ,
                                                               "블럭을 밀어 옮겨보세요" ,
                                                               "R키를 눌러 다시 시작 할 수 있어요",
+                                                              "느낌표 버튼을 눌러 힌트를 받으세요",
                                                               "ESC키를 눌러 일시정지 할 수 있어요",
                                                               "정답블럭칸에 START를 맞춰보세요!"};
         content.text = TutorialText[idx];
@@ -38,7 +39,7 @@ public class Tutorial : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && !PausePanel.activeInHierarchy)
           {
             idx++;
-            if (idx > 4 && !ClearPanel.activeInHierarchy)
+            if (idx > 5 && !ClearPanel.activeInHierarchy)
                {
                 AnswerBlockArrow.SetActive(false);
                 TutorialPanel.SetActive(false);
@@ -57,20 +58,15 @@ public class Tutorial : MonoBehaviour
     {
         switch(idx)
         {
-            case 0:
-                return;
             case 1:
                 BlockArrow.SetActive(true);
-                return;
+                break;
             case 2:
                 BlockArrow.SetActive(false);
-                return;
-            case 3:
-                BlockArrow.SetActive(false);
-                return;
-            case 4:
+                break;
+            case 5:
                 AnswerBlockArrow.SetActive(true);
-                return;
+                break;
         }
     }
 }
