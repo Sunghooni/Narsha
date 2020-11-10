@@ -7,10 +7,10 @@ public class Stageselector : MonoBehaviour
 {
     public void tutorial()
     {
-        SceneManager.LoadScene("tutorial");
+        LoadingScene.LoadScene("tutorial");
     }
     public void stage1click()
     {
-        SceneManager.LoadScene("Stage1");
+        LoadingScene.LoadScene("Stage1");
     }
 }
