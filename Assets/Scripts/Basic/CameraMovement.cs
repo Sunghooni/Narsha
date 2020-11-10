@@ -10,6 +10,6 @@ public class CameraMovement : MonoBehaviour
     {
         var pos = player.transform.position;
         Vector3 target = new Vector3(pos.x, pos.y + 5.6f, pos.z - 3.5f);
-        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, target, Time.deltaTime);
+        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, target, 5 * Time.deltaTime);
     }
 }
