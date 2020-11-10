@@ -6,30 +6,12 @@ using UnityEngine.UI;
 
 public class InGameUIManager : MonoBehaviour
 {
-    public GameObject PausePanel, ClearPanel, DiePanel,  firstBlock, player, Help, ShowHelpImage, Mission;
+    public GameObject PausePanel, ClearPanel, DiePanel, player, Help, ShowHelpImage, Mission;
     public string HelpMessage;
     bool HelpSelect = false;
 
-    private void Start()
-    {
-        Mission.SetActive(false);
-        Help.SetActive(false);
-    }
-
     private void Update()
     {
-        if(FindObjectOfType<ClearCheck>().answerCode == "START")
-        {
-            if(FindObjectOfType<Tutorial>().idx > 2)
-            {
-                Help.SetActive(true);
-            }
-        }
-        else
-        {
-            Help.SetActive(true);
-        }
-        ShowMission();
         if (Input.GetKeyDown(KeyCode.Escape) && !ClearPanel.activeInHierarchy)
         {
             if (!PausePanel.activeInHierarchy)
@@ -41,19 +23,8 @@ public class InGameUIManager : MonoBehaviour
             else
             {
                 PausePanel.SetActive(false);
-                if (FindObjectOfType<ClearCheck>().answerCode == "START")
-                {
-                    if (FindObjectOfType<Tutorial>().idx > 4)
-                    {
-                        player.GetComponent<BlockMove>().canInput = true;
-                        Time.timeScale = 1f;
-                    }
-                }
-                else
-                {
-                    player.GetComponent<BlockMove>().canInput = true;
-                    Time.timeScale = 1f;
-                }
+                player.GetComponent<BlockMove>().canInput = true;
+                Time.timeScale = 1f;
             }
         }
     }
@@ -87,10 +58,6 @@ public class InGameUIManager : MonoBehaviour
 
     public void OnClickHelp()
     {
-        if (FindObjectOfType<ClearCheck>().answerCode == "START")
-        {
-            if (FindObjectOfType<Tutorial>().idx > 2)
-            {
                 if (!HelpSelect)
                 {
                     this.gameObject.SetActive(false);
@@ -104,40 +71,6 @@ public class InGameUIManager : MonoBehaviour
                     HelpSelect = false;
                 }
                 ShowHelpImage.GetComponentInChildren<Text>().text = HelpMessage;
-            }
-        }
-        else
-        {
-            if (!HelpSelect)
-            {
-                this.gameObject.SetActive(false);
-                ShowHelpImage.SetActive(true);
-                HelpSelect = true;
-            }
-            else
-            {
-                this.gameObject.SetActive(true);
-                ShowHelpImage.SetActive(false);
-                HelpSelect = false;
-            }
-            ShowHelpImage.GetComponentInChildren<Text>().text = HelpMessage;
-        }
-
-    }
-
-    void ShowMission()
-    {
-        if (FindObjectOfType<ClearCheck>().answerCode == "START")
-        {
-            if (FindObjectOfType<Tutorial>().idx > 3)
-            {
-                Mission.SetActive(true);
-            }
-        }
-        else
-        {
-            Mission.SetActive(true);
-        }
-    }
+      }
 
 }

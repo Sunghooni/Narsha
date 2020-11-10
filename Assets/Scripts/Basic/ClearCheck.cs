@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ClearCheck : MonoBehaviour
 {
+    public AudioManager audioManager;
+
     public GameObject[] checkBocks;
     public IdentifyCode[] answerBocks;
     public bool winCheck = false;
@@ -35,6 +37,9 @@ public class ClearCheck : MonoBehaviour
             if(answerCode == "START")
             {
                 Debug.Log("Clear");
+                if (!winCheck)
+                    audioManager.PlaySounds("CodeComplete");
+                 
                 winCheck = true;
                 HelpText.GetComponent<Text>().color = Color.green;
                 IGUI.Clear();

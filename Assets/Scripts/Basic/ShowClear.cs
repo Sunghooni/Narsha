@@ -48,11 +48,11 @@ public class ShowClear : MonoBehaviour
     void StageOne()
     {
         isClear = true;
-        for (int i = 0; i < StageOneObject.Length; i++)
+        for (double i = 0; i < StageOneObject.Length; i += 0.2)
         {
-            Invoke("StageOneClear",  i / 1.5f);
+            Invoke("StageOneClear",  (float)i);
         }
-        Invoke("StageClearEnd", 7.0f);
+        Invoke("StageClearEnd", 2.2f);
     }
 
     void StageClearEnd()
