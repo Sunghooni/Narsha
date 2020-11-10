@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClearCheck : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ClearCheck : MonoBehaviour
 
     public string answerCode = "START";
     private string input;
+    public GameObject HelpText;
 
     void Update()
     {
@@ -34,6 +36,7 @@ public class ClearCheck : MonoBehaviour
             {
                 Debug.Log("Clear");
                 winCheck = true;
+                HelpText.GetComponent<Text>().color = Color.green;
                 IGUI.Clear();
             }
             else

@@ -6,12 +6,30 @@ using UnityEngine.UI;
 
 public class InGameUIManager : MonoBehaviour
 {
-    public GameObject PausePanel, ClearPanel, DiePanel,  firstBlock, player, Help, ShowHelpImage;
+    public GameObject PausePanel, ClearPanel, DiePanel,  firstBlock, player, Help, ShowHelpImage, Mission;
     public string HelpMessage;
     bool HelpSelect = false;
 
+    private void Start()
+    {
+        Mission.SetActive(false);
+        Help.SetActive(false);
+    }
+
     private void Update()
     {
+        if(FindObjectOfType<ClearCheck>().answerCode == "START")
+        {
+            if(FindObjectOfType<Tutorial>().idx > 2)
+            {
+                Help.SetActive(true);
+            }
+        }
+        else
+        {
+            Help.SetActive(true);
+        }
+        ShowMission();
         if (Input.GetKeyDown(KeyCode.Escape) && !ClearPanel.activeInHierarchy)
         {
             if (!PausePanel.activeInHierarchy)
@@ -25,7 +43,7 @@ public class InGameUIManager : MonoBehaviour
                 PausePanel.SetActive(false);
                 if (FindObjectOfType<ClearCheck>().answerCode == "START")
                 {
-                    if (FindObjectOfType<Tutorial>().idx > 5)
+                    if (FindObjectOfType<Tutorial>().idx > 4)
                     {
                         player.GetComponent<BlockMove>().canInput = true;
                         Time.timeScale = 1f;
@@ -71,7 +89,7 @@ public class InGameUIManager : MonoBehaviour
     {
         if (FindObjectOfType<ClearCheck>().answerCode == "START")
         {
-            if (FindObjectOfType<Tutorial>().idx > 5)
+            if (FindObjectOfType<Tutorial>().idx > 2)
             {
                 if (!HelpSelect)
                 {
@@ -106,4 +124,20 @@ public class InGameUIManager : MonoBehaviour
         }
 
     }
+
+    void ShowMission()
+    {
+        if (FindObjectOfType<ClearCheck>().answerCode == "START")
+        {
+            if (FindObjectOfType<Tutorial>().idx > 3)
+            {
+                Mission.SetActive(true);
+            }
+        }
+        else
+        {
+            Mission.SetActive(true);
+        }
+    }
+
 }
