@@ -39,7 +39,7 @@ public class ControlOptionUI : MonoBehaviour
 
     public void HD_Clicked()
     {
-        OptionValues.GetOptionValue().WindowSizeRow = 1290;
+        OptionValues.GetOptionValue().WindowSizeRow = 1280;
         OptionValues.GetOptionValue().WindowSizeCol = 720;
     }
 }
