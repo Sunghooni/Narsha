@@ -6,11 +6,17 @@ using UnityEngine.UI;
 
 public class InGameUIManager : MonoBehaviour
 {
-    public GameObject PausePanel, ClearPanel, DiePanel, player, Help, ShowHelpImage, Mission;
+    public GameObject PausePanel, ClearPanel, DiePanel, player, Help, ShowHelpImage, MissionText;
     public string HelpMessage;
+    public string[] MissionMessage;
     bool HelpSelect = false;
 
     private void Update()
+    {
+        GamePause();
+    }
+
+    void GamePause()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !ClearPanel.activeInHierarchy)
         {
@@ -40,7 +46,7 @@ public class InGameUIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void BackToStage()
+    public void BackToStageSelect()
     {
         SceneManager.LoadScene("StageSelect");
     }
@@ -48,6 +54,18 @@ public class InGameUIManager : MonoBehaviour
     public void BackToMain()
     {
         SceneManager.LoadScene("Main");
+    }
+
+    public void GoNextStage()
+    {
+        SceneManager.LoadScene("Stage2");
+    }
+
+    public void ContinueGame()
+    {
+        PausePanel.SetActive(false);
+        player.GetComponent<BlockMove>().canInput = true;
+        Time.timeScale = 1f;
     }
 
     public void Clear()

@@ -35,7 +35,7 @@ public class ClearCheck : MonoBehaviour
         if (input != null && input.Equals(answerCode))
         {
             if(answerCode == "START")
-            {
+              {
                 Debug.Log("Clear");
                 if (!winCheck)
                     audioManager.PlaySounds("CodeComplete");
@@ -43,8 +43,8 @@ public class ClearCheck : MonoBehaviour
                 winCheck = true;
                 HelpText.GetComponent<Text>().color = Color.green;
                 IGUI.Clear();
-            }
-            else
+              }
+           else
             {
                 winCheck = true;
             }
