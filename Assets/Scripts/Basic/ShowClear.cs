@@ -5,7 +5,6 @@ using UnityEngine;
 public class ShowClear : MonoBehaviour
 {
     public Camera MainCamera, ClearCamera;
-    public GameObject ClearObject;
     public GameObject[] StageOneObject;
     public Vector3 InstantiatePosition;
     [SerializeField]
@@ -48,9 +47,11 @@ public class ShowClear : MonoBehaviour
     void StageOne()
     {
         isClear = true;
-        for (double i = 0; i < StageOneObject.Length; i += 0.2)
+        float timer = 0;
+        for (double i = 0; i < StageOneObject.Length; i += 1)
         {
-            Invoke("StageOneClear",  (float)i);
+            Invoke("StageOneClear",  timer);
+            timer += 0.2f;
         }
         Invoke("StageClearEnd", 2.2f);
     }
