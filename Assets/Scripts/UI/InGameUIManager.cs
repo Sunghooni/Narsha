@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class InGameUIManager : MonoBehaviour
 {
-    public GameObject PausePanel, ClearPanel, DiePanel, player, Help, ShowHelpImage, MissionText;
+    public GameObject PausePanel, ClearPanel, DiePanel, player, Help, ShowHelpImage, MissionText, TutorialPanel;
     public string HelpMessage;
     public string[] MissionMessage;
     bool HelpSelect = false;
@@ -29,7 +29,10 @@ public class InGameUIManager : MonoBehaviour
             else
             {
                 PausePanel.SetActive(false);
-                player.GetComponent<BlockMove>().canInput = true;
+                if (FindObjectOfType<ClearCheck>().answerCode == "START")
+                    FindObjectOfType<BlockMove>().canInput = false;
+                else
+                    player.GetComponent<BlockMove>().canInput = true;
                 Time.timeScale = 1f;
             }
         }

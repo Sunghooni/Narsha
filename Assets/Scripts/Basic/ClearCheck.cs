@@ -14,7 +14,7 @@ public class ClearCheck : MonoBehaviour
 
     public string answerCode = "START";
     private string input;
-    public GameObject HelpText;
+    public GameObject MissionText;
 
     void Update()
     {
@@ -34,18 +34,21 @@ public class ClearCheck : MonoBehaviour
         }
         if (input != null && input.Equals(answerCode))
         {
-            if(answerCode == "START")
+            if(input == "START")
               {
                 Debug.Log("Clear");
                 if (!winCheck)
                     audioManager.PlaySounds("CodeComplete");
                  
                 winCheck = true;
-                HelpText.GetComponent<Text>().color = Color.green;
+                MissionText.GetComponent<Text>().color = Color.green;
                 IGUI.Clear();
               }
            else
             {
+                if (!winCheck)
+                    audioManager.PlaySounds("CodeComplete");
+                MissionText.GetComponent<Text>().color = Color.green;
                 winCheck = true;
             }
         }
