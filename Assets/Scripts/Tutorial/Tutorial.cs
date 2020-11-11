@@ -33,6 +33,8 @@ public class Tutorial : MonoBehaviour
     {
         ControlText();
         //ShowObject();
+        if (TutorialPanel.activeInHierarchy)
+            FindObjectOfType<BlockMove>().canInput = false;
     }
 
     private void ControlText()
@@ -41,13 +43,15 @@ public class Tutorial : MonoBehaviour
           {
             idx++;
             if (idx > 6 && !ClearPanel.activeInHierarchy)
-               {
+            {
                 AnswerBlockArrow.SetActive(false);
                 TutorialPanel.SetActive(false);
                 FindObjectOfType<BlockMove>().canInput = true;
                 Debug.Log(FindObjectOfType<BlockMove>().gameObject.name);
                 return;
-              }
+            }
+            else
+                FindObjectOfType<BlockMove>().canInput = false;
             content.text = TutorialText[idx];
             ShowObject();
            
