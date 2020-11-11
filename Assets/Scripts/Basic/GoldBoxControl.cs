@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GoldBoxControl : MonoBehaviour
 {
-    public GameObject GoldBoxPart, GoldBox, ClearPanel;
+    public GameObject GoldBoxPart, GoldBox, ClearPanel, MissionText;
     Rigidbody GoldBoxRigidBody;
     bool isPlayer = false;
     public bool Clear = false;
+    InGameUIManager IGUI;
 
     private void Awake()
     {
         GoldBoxRigidBody = GoldBox.GetComponent<Rigidbody>();
+        IGUI = FindObjectOfType<InGameUIManager>().GetComponent<InGameUIManager>();
     }
 
     private void Update()
@@ -19,7 +22,8 @@ public class GoldBoxControl : MonoBehaviour
         if(isPlayer)
         {
             GoldBoxAnim();
-            Invoke("ShowClearPanel", 0.5f);
+            MissionText.GetComponent<Text>().color = Color.green;
+            Invoke("ShowClearPanel", 1.0f);
         }
         //Debug.Log(GoldBoxPart.transform.rotation.z);
     }
@@ -28,8 +32,11 @@ public class GoldBoxControl : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if(!isPlayer)
+            if (!isPlayer)
+            {
                 GoldBoxRigidBody.AddForce(Vector3.up * 1.5f, ForceMode.Impulse);
+                FindObjectOfType<AudioManager>().PlaySounds("CodeComplete");
+            }
             Debug.Log("fhuwef");
             isPlayer = true;
         }
@@ -45,6 +52,6 @@ public class GoldBoxControl : MonoBehaviour
 
     private void ShowClearPanel()
     {
-        FindObjectOfType<InGameUIManager>().Clear();
+        IGUI.Clear();
     }
 }
