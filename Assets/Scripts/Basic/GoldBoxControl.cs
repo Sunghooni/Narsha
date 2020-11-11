@@ -21,7 +21,7 @@ public class GoldBoxControl : MonoBehaviour
             GoldBoxAnim();
             Invoke("ShowClearPanel", 0.5f);
         }
-        Debug.Log(GoldBoxPart.transform.rotation.z);
+        //Debug.Log(GoldBoxPart.transform.rotation.z);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -8,7 +8,7 @@ public class ClearCheck : MonoBehaviour
     public AudioManager audioManager;
 
     public GameObject[] checkBocks;
-    public IdentifyCode[] answerBocks;
+    public CodeBlock[] answerBocks;
     public bool winCheck = false;
     public InGameUIManager IGUI;
 
@@ -28,8 +28,8 @@ public class ClearCheck : MonoBehaviour
         {
             if(Physics.Raycast(checkBocks[i].transform.position, Vector3.up, out hit, 2) && hit.transform.tag != "Player")
             {
-                IdentifyCode identifyCode = hit.transform.gameObject.GetComponent<IdentifyCode>();
-                input += identifyCode.code;
+                CodeBlock codeBlock = hit.transform.gameObject.GetComponent<CodeBlock>();
+                input += codeBlock.code;
             }
         }
         if (input != null && input.Equals(answerCode))

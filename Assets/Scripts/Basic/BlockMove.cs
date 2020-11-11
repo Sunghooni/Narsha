@@ -74,8 +74,9 @@ public class BlockMove : MonoBehaviour
         if (me == player)
             canMove = true;
 
-        if (Physics.Raycast(movePos, transform.right, out moveHit, 1f))
+        if (Physics.BoxCast(movePos, /*transform.lossyScale / 2f*/ new Vector3(0.1f, 0.1f, 0.1f), transform.right, out moveHit, transform.rotation, 1f)) 
         {
+            Debug.Log(moveHit.collider.gameObject.name);
             if (moveHit.transform.tag.Equals("Unmovable"))
             {
                 canMove = false;
