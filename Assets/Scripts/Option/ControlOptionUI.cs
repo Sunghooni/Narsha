@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ControlOptionUI : MonoBehaviour
 {
-
+    public Slider slider;
     public void WASD_Clicked()
     {
         OptionValues.GetOptionValue().isControlKey = true;
@@ -17,29 +20,36 @@ public class ControlOptionUI : MonoBehaviour
 
     public void Full_Clicked()
     {
-        OptionValues.GetOptionValue().isScreenMode = true;
+        Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
     }
 
     public void Window_Clicked()
     {
-        OptionValues.GetOptionValue().isScreenMode = true;
+        Screen.fullScreenMode = FullScreenMode.Windowed;
     }
 
     public void FHD_Clicked()
     {
-        OptionValues.GetOptionValue().WindowSizeRow = 1920;
-        OptionValues.GetOptionValue().WindowSizeCol = 1080;
+        SettingResolution(1920, 1080);
     }
 
     public void HDPlus_Clicked()
     {
-        OptionValues.GetOptionValue().WindowSizeRow = 1600;
-        OptionValues.GetOptionValue().WindowSizeCol = 900;
+        SettingResolution(1600, 900);
     }
 
     public void HD_Clicked()
     {
-        OptionValues.GetOptionValue().WindowSizeRow = 1280;
-        OptionValues.GetOptionValue().WindowSizeCol = 720;
+        SettingResolution(1280, 720);
+    }
+
+    private void SettingResolution(int Row, int Col)
+    {
+        Screen.SetResolution(Row, Col, Screen.fullScreenMode);
+    }
+
+    public void UpdateVolumText()
+    {
+        GameObject.Find("TXT_Volume").GetComponent<TextMeshProUGUI>().text = (slider.value).ToString();
     }
 }
