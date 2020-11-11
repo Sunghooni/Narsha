@@ -14,7 +14,7 @@ public class ClearCheck : MonoBehaviour
 
     public string answerCode = "START";
     private string input;
-    public GameObject MissionText;
+    public GameObject MissionText, MissionPanel;
 
     void Update()
     {
@@ -47,12 +47,22 @@ public class ClearCheck : MonoBehaviour
            else
             {
                 if (!winCheck)
+                {
                     audioManager.PlaySounds("CodeComplete");
-                MissionText.GetComponent<Text>().color = Color.green;
+                    MissionText.GetComponent<Text>().color = Color.green;
+                    Invoke("StageOneChangeMission", 1.0f);
+                }
                 winCheck = true;
             }
         }
         else
             input = null;
+    }
+
+    void StageOneChangeMission()
+    {
+        MissionText.GetComponent<Text>().text = "보물상자를 열어보세요";
+        MissionText.GetComponent<Text>().color = Color.black;
+        MissionPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(210, MissionPanel.GetComponent<RectTransform>().sizeDelta.y);
     }
 }
