@@ -7,18 +7,14 @@ public class ShowClear : MonoBehaviour
     public Camera MainCamera, ClearCamera;
     public GameObject[] StageOneObject;
     public Vector3 InstantiatePosition;
-    public AudioClip WaterSound;
-    AudioSource water;
     [SerializeField]
     int StageNumber;
     int StageOneShowWoodIdx = 0;
     public bool isClear;
-    float timer = 0;
 
     private void Awake()
     {
         ClearCamera.enabled = false;
-        water = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -44,14 +40,13 @@ public class ShowClear : MonoBehaviour
     void StageOneClear()
     {
         StageOneObject[StageOneShowWoodIdx].SetActive(true);
-        if (timer == 0.2f)
-            //WaterSound.
         ++StageOneShowWoodIdx;
         Debug.Log(StageOneShowWoodIdx); 
     }
 
     void StageOne()
     {
+        float timer = 0;
         isClear = true;
         for (double i = 0; i < StageOneObject.Length; i += 1)
         {

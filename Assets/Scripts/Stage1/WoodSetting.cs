@@ -5,16 +5,22 @@ using UnityEngine;
 public class WoodSetting : MonoBehaviour
 {
     Transform WoodTransform;
+    AudioSource WaterSound;
 
     private void Awake()
     {
         WoodTransform = GetComponent<Transform>();
+        if (this.gameObject.name == "RoundWood")
+            WaterSound = this.gameObject.GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
     {
-        if(WoodTransform.position.y >= 0.75f)
+        if (WoodTransform.position.y >= 0.75f)
             MoveDown();
+        else
+            WaterSound.enabled = true;
+
     }
 
     void MoveDown()
