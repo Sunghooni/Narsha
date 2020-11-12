@@ -63,6 +63,7 @@ public class ClearCheck : MonoBehaviour
     {
         MissionText.GetComponent<Text>().text = "보물상자를 열어보세요";
         MissionText.GetComponent<Text>().color = Color.black;
-        MissionPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(210, MissionPanel.GetComponent<RectTransform>().sizeDelta.y);
+        MissionText.GetComponent<RectTransform>().sizeDelta = new Vector2(210, MissionText.GetComponent<RectTransform>().sizeDelta.y);
+        MissionPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(220, MissionPanel.GetComponent<RectTransform>().sizeDelta.y);
     }
 }
