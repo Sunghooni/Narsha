@@ -76,13 +76,11 @@ public class ClearCheck_Stage2 : MonoBehaviour
         {
             if(Physics.Raycast(pos, Vector3.up, out hit, 0.6f))
             {
-                Debug.Log(hit.transform.name);
                 templeCheck = true;
                 isFinished = true;
                 FixBlocks();
             }
         }
-        Debug.DrawRay(pos, Vector3.up * 5f, Color.red, 3f);
     }
 
     void FixBlocks()

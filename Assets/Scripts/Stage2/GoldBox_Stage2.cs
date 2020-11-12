@@ -21,8 +21,8 @@ public class GoldBox_Stage2 : MonoBehaviour
     {
         if (clearCheck.templeCheck)
         {
-            CameraCtrl();
-            ShowBox();
+            Invoke("CameraCtrl", 0.5f);
+            Invoke("ShowBox", 0.5f);
         }
         if(isEnter)
         {
@@ -55,7 +55,7 @@ public class GoldBox_Stage2 : MonoBehaviour
         {
             if (cameraDelay > 0.5f)
             {
-                clearCheck.lengthNum = 0;
+                StartCoroutine("UpDelay");
                 isShowed = true;
             }
 
@@ -73,6 +73,12 @@ public class GoldBox_Stage2 : MonoBehaviour
         {
             winCheck = true;
         }
+    }
+
+    IEnumerator UpDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        clearCheck.lengthNum = 0;
     }
 
     private void OnTriggerEnter(Collider other)
