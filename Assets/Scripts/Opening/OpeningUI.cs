@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OpeningUI : MonoBehaviour
@@ -56,6 +57,7 @@ public class OpeningUI : MonoBehaviour
         else
         {
             CancelInvoke();
+            SceneManager.LoadScene("Main");
         }
     }
 }
