@@ -35,7 +35,9 @@ public class GoldBox_Stage2 : MonoBehaviour
         if (isShowed)
             Camera.depth = 0;
         else
+        {
             Camera.depth = -2;
+        }
     }
 
     private void ShowBox()
@@ -52,7 +54,10 @@ public class GoldBox_Stage2 : MonoBehaviour
         else
         {
             if (cameraDelay > 0.5f)
+            {
+                clearCheck.lengthNum = 0;
                 isShowed = true;
+            }
 
             cameraDelay += Time.deltaTime;
         }

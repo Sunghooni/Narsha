@@ -74,12 +74,12 @@ public class ClearCheck_Stage2 : MonoBehaviour
 
         if(lengthNum == 1)
         {
-            if(Physics.Raycast(pos, Vector3.up, out hit, 5f))
+            if(Physics.Raycast(pos, Vector3.up, out hit, 0.6f))
             {
                 Debug.Log(hit.transform.name);
                 templeCheck = true;
                 isFinished = true;
-                Invoke("FixBlocks", 1);
+                FixBlocks();
             }
         }
         Debug.DrawRay(pos, Vector3.up * 5f, Color.red, 3f);
@@ -87,7 +87,6 @@ public class ClearCheck_Stage2 : MonoBehaviour
 
     void FixBlocks()
     {
-        lengthNum = 0;
         for(int i = 0; i < answerBlocks.Length; i++)
         {
             answerBlocks[i].tag = "Unmovable";
