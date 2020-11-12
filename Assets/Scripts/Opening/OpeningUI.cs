@@ -7,29 +7,51 @@ public class OpeningUI : MonoBehaviour
 {
     RectTransform NTNT;
     int i = 0;
+    int j = 0;
     // Start is called before the first frame update
     public void Start()
     {
         NTNT = FindObjectOfType<OpeningUI>().GetComponent<RectTransform>();
 
           
-        Invoke("moveUI", 0.3f);       
+        InvokeRepeating("moveUI", 0.3f, 0.3f);       
     }
 
 
     void moveUI()
-    {
+    {   
+        Vector2 aPos = NTNT.position;
+
         if (i < 12)
         {
-            Vector2 aPos = NTNT.position;
-
             aPos.x = aPos.x -= 100;
 
             NTNT.position = aPos;
 
             i++;
-
-            Invoke("moveUI", 0.3f);
         }
+        else
+        {
+            Debug.Log("moveend");
+            InvokeRepeating("godown", 0.8f, 0.3f);      
+        }
+    }
+
+    void godown()
+    {
+        if (j < 10)
+        {
+            Debug.Log("godown");
+
+            Vector2 aPos = NTNT.position;
+
+            aPos.y -= 10;
+
+            NTNT.position = aPos;
+
+            j++;          
+        }
+        else
+            CancelInvoke();
     }
 }
