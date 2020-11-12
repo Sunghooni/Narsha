@@ -7,13 +7,16 @@ public class ClearCheck_Stage2 : MonoBehaviour
     public GameObject[] checkBocks;
     public bool arrayCheck = false;
 
+    private string lengthTemp = null;
+    public int lengthNum = 0;
+
     private string[] answers = new string[3]{ "intLength=1;", "intLength=3;", "intLength=5;" };
-    private string lengthNum = null;
     private string input;
 
     private void Update()
     {
         ArrayCheck();
+        Debug.Log(lengthNum);
     }
 
     void ArrayCheck()
@@ -26,29 +29,33 @@ public class ClearCheck_Stage2 : MonoBehaviour
                 CodeBlock codeBlock = hit.transform.gameObject.GetComponent<CodeBlock>();
                 input += codeBlock.code;
 
-                if(i == checkBocks.Length - 1)
+                if(i == checkBocks.Length - 2)
                 {
-                    lengthNum = codeBlock.code;
+                    lengthTemp = codeBlock.code;
                 }
             }
         }
         if (input != null)
         {
-            Debug.Log(input);
             for(int i = 0; i < answers.Length; i++)
             {
                 if (input.Equals(answers[i]))
                 {
+                    lengthNum = int.Parse(lengthTemp);
                     arrayCheck = true;
                     break;
                 }
-                else
+                else if(i == answers.Length - 1)
                 {
-                    lengthNum = null;
-                    arrayCheck = false;
+                    lengthNum = 0;
                 }
             }
+            if(lengthNum == 0)
+            {
+                arrayCheck = false;
+            }
         }
+        lengthTemp = null;
         input = null;
     }
 }

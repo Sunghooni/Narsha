@@ -11,6 +11,7 @@ public class BlockMove : MonoBehaviour
 {
     public GameObject player;
     public bool canInput = true;
+    public bool groundCheck = true;
     //private const float tolerance = 0.3f; // 허용 오차범위 (공차)
     private bool canMove = true;
     private bool isPressed = false;
@@ -18,7 +19,7 @@ public class BlockMove : MonoBehaviour
     Vector2 InputAxis;
     private Vector3 initialRotator;
     private float delay = 0.3f;
-
+    private float inputCtrl = 1;
     private void Awake()
     {
         initialRotator = transform.rotation.eulerAngles;
@@ -33,8 +34,8 @@ public class BlockMove : MonoBehaviour
 
     void GetInput()
     {
-        float horz = Input.GetAxisRaw("Horizontal");
-        float vert = Input.GetAxisRaw("Vertical");
+        float horz = Input.GetAxisRaw("Horizontal") * inputCtrl;
+        float vert = Input.GetAxisRaw("Vertical") * inputCtrl;
         InputAxis = new Vector2(horz, vert);
 
         if(InputAxis.sqrMagnitude > 0 && canInput)
@@ -76,7 +77,6 @@ public class BlockMove : MonoBehaviour
 
         if (Physics.Raycast(movePos, transform.right, out moveHit, 1)) 
         {
-            Debug.Log(moveHit.collider.gameObject.name);
             if (moveHit.transform.tag.Equals("Unmovable"))
             {
                 canMove = false;
@@ -102,9 +102,12 @@ public class BlockMove : MonoBehaviour
 
     void isGround()
     {
-        if (!Physics.Raycast(gameObject.transform.position, Vector3.down, 1))
+        RaycastHit hit;
+        if (!Physics.Raycast(gameObject.transform.position, Vector3.down, out hit, 0.5f))
+            inputCtrl = 0;
+        else
         {
-            canInput = false;
+            inputCtrl = 1;
         }
     }
 
