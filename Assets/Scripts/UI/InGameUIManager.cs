@@ -18,7 +18,7 @@ public class InGameUIManager : MonoBehaviour
 
     void GamePause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !ClearPanel.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.Escape) && !ClearPanel.activeInHierarchy && !DiePanel.activeInHierarchy)
         {
             if (!PausePanel.activeInHierarchy)
             {
