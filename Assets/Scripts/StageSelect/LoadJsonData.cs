@@ -1,34 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitJson;
 using System.IO;
 
 public class StageClearInfo
 {
-    public int ID;
-    public bool IsClear;
+    public int ClearNumber;
 
-    public StageClearInfo(int id, bool isClear)
+    public StageClearInfo(int ClearNum)
     {
-        ID = id;
-        IsClear = isClear;
+        ClearNumber = ClearNum;
     }
 }
 
 public class LoadJsonData : MonoBehaviour
 {
-    public List<StageClearInfo> StageList = new List<StageClearInfo>();
+    public List<StageClearInfo> ClearNum = new List<StageClearInfo>();
     string JsonPath, JsonData;
+    FileInfo isExists;
 
 
     private void Awake()
     {
         JsonPath = Application.dataPath + "/Resources/StageClear.json";
+        isExists = new FileInfo(JsonPath);
     }
 
     private void Start()
     {
-        FileInfo isExists = new FileInfo(JsonPath);
         if (!isExists.Exists)
             MakeJsonFile();
     }
@@ -40,16 +40,9 @@ public class LoadJsonData : MonoBehaviour
 
     void MakeJsonFile()
     {
-        StageList.Add(new StageClearInfo(0, false));
-        StageList.Add(new StageClearInfo(1, false));
-        StageList.Add(new StageClearInfo(2, false));
-        StageList.Add(new StageClearInfo(3, false));
-        StageList.Add(new StageClearInfo(4, false));
-        StageList.Add(new StageClearInfo(5, false));
-
-        JsonData = JsonUtility.ToJson(StageList);
+        ClearNum.Add(new StageClearInfo(0));
+        JsonData = JsonMapper.ToJson(ClearNum);
 
         File.WriteAllText(JsonPath, JsonData.ToString());
-
     }
 }
