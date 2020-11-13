@@ -89,7 +89,7 @@ public class BlockMove : MonoBehaviour
         {
             movePos += transform.right;
             me.transform.position = movePos;
-            AudioManager.GetInstance().PlaySounds("BasicMove");
+            //AudioManager.GetInstance().PlaySounds("BasicMove");
         }
         return;
     }

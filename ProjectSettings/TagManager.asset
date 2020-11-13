@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Unmovable
   - WaterBlocks
+  - Testblock
   layers:
   - Default
   - TransparentFX
