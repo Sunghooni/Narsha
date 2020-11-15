@@ -6,7 +6,6 @@ using UnityEngine.Rendering;
 public class OpeningSlime : MonoBehaviour //todo  : 슬라임이 자동으로 이동하면서 NTNT밀기
 {
     public GameObject player;
-    
 
     int i = 0;
 
@@ -27,9 +26,9 @@ public class OpeningSlime : MonoBehaviour //todo  : 슬라임이 자동으로 �
         if (i < 12)
         {
             transform.Translate(new Vector3(0.8f, 0.0f, 0.0f));
+
             i++;
 
-            FindObjectOfType<AudioManager>().PlaySounds("BasicMove");
             Invoke("moveslime", 0.3f);
         }
         else {

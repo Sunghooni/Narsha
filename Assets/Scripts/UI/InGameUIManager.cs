@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -30,7 +28,7 @@ public class InGameUIManager : MonoBehaviour
             {
                 PausePanel.SetActive(false);
                 if (FindObjectOfType<ClearCheck>().answerCode == "START")
-                    FindObjectOfType<BlockMove>().canInput = false;
+                    FindObjectOfType<BlockMove>().canInput = true;
                 else
                     player.GetComponent<BlockMove>().canInput = true;
                 Time.timeScale = 1f;
@@ -79,19 +77,19 @@ public class InGameUIManager : MonoBehaviour
 
     public void OnClickHelp()
     {
-                if (!HelpSelect)
-                {
-                    this.gameObject.SetActive(false);
-                    ShowHelpImage.SetActive(true);
-                    HelpSelect = true;
-                }
-                else
-                {
-                    this.gameObject.SetActive(true);
-                    ShowHelpImage.SetActive(false);
-                    HelpSelect = false;
-                }
-                ShowHelpImage.GetComponentInChildren<Text>().text = HelpMessage;
-      }
+        if (!HelpSelect)
+        {
+            this.gameObject.SetActive(false);
+            ShowHelpImage.SetActive(true);
+            HelpSelect = true;
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+            ShowHelpImage.SetActive(false);
+            HelpSelect = false;
+        }
+        ShowHelpImage.GetComponentInChildren<Text>().text = HelpMessage;
+    }
 
 }

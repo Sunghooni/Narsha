@@ -13,4 +13,8 @@ public class Stageselector : MonoBehaviour
     {
         LoadingScene.LoadScene("Stage1");
     }
+    public void beforeClick()
+    {
+        SceneManager.LoadScene("Main");
+    }
 }
