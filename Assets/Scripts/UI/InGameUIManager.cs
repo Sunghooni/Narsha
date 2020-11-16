@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class InGameUIManager : MonoBehaviour
 {
     public GameObject PausePanel, ClearPanel, DiePanel, player, Help, ShowHelpImage, MissionText, TutorialPanel;
-    public string HelpMessage;
+    public string HelpMessage, NextStage;
     public string[] MissionMessage;
     bool HelpSelect = false;
 
@@ -59,7 +59,7 @@ public class InGameUIManager : MonoBehaviour
 
     public void GoNextStage()
     {
-        SceneManager.LoadScene("Stage2");
+        SceneManager.LoadScene(NextStage);
     }
 
     public void ContinueGame()
