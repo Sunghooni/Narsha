@@ -62,5 +62,6 @@ public class ControlOptionUI : MonoBehaviour
     public void closeclick()
     {
         SceneManager.UnloadSceneAsync("Option");
+        Optionclick.isclicked = false;
     }
 }

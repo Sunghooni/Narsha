@@ -5,8 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class Optionclick : MonoBehaviour
 {
+    public static bool isclicked;
+    public void Start()
+    {
+       isclicked = false;
+    }
       public void onclickoption()
     {
-        SceneManager.LoadScene("Option", LoadSceneMode.Additive);
+        if (isclicked == false)
+        {
+            SceneManager.LoadScene("Option", LoadSceneMode.Additive);
+            isclicked = true;
+        }
+        else
+        {
+
+        }
     }
 }
