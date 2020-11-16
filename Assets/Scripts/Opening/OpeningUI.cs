@@ -8,17 +8,30 @@ public class OpeningUI : MonoBehaviour
 {
     public GameObject NTNT;
     public GameObject Team;
+    
 
     Color color;
     string t;
     int i = 0;
     int j = 0;
+    int scwidth;
+    int scheight;
     // Start is called before the first frame update
+
+    public void Awake()
+    {   
+        scwidth = Screen.width;
+        scheight = Screen.height;
+        Screen.SetResolution(1920, 1080, Screen.fullScreenMode, 0);
+    }
     public void Start()
     {
+        Debug.Log(Screen.width);
         color = Team.GetComponent<UnityEngine.UI.Text>().color;
 
-        InvokeRepeating("moveUI", 0.3f, 0.3f);       
+        InvokeRepeating("moveUI", 0.3f, 0.3f); 
+        
+
     }
 
 
@@ -34,7 +47,6 @@ public class OpeningUI : MonoBehaviour
         }
         else
         {
-            Debug.Log("moveend");
             InvokeRepeating("godown", 0.8f, 0.01f);      
         }
     }
@@ -43,8 +55,6 @@ public class OpeningUI : MonoBehaviour
     {
         if (j < 100)
         {
-            Debug.Log("godown");
-            Debug.Log(color);
 
             NTNT.transform.Translate(new Vector3(0.0f, - 1f, 0.0f));
             if (j > 30)
@@ -57,6 +67,7 @@ public class OpeningUI : MonoBehaviour
         else
         {
             CancelInvoke();
+            Screen.SetResolution(scwidth, scheight, Screen.fullScreenMode);
             SceneManager.LoadScene("Main");
         }
     }
