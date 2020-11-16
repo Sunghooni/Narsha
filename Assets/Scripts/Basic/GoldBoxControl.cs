@@ -34,7 +34,7 @@ public class GoldBoxControl : MonoBehaviour
         {
             if (!isPlayer)
             {
-                GoldBoxRigidBody.AddForce(Vector3.up * 2.2f, ForceMode.Impulse);
+                GoldBoxRigidBody.AddForce(Vector3.up * 1.5f, ForceMode.Impulse);
                 FindObjectOfType<AudioManager>().PlaySounds("CodeComplete");
             }
             Debug.Log("fhuwef");

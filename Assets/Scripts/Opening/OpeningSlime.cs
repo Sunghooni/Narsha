@@ -29,6 +29,8 @@ public class OpeningSlime : MonoBehaviour //todo  : 슬라임이 자동으로 �
 
             i++;
 
+            FindObjectOfType<AudioManager>().PlaySounds("BasicMove");
+
             Invoke("moveslime", 0.3f);
         }
         else {
