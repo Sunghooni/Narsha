@@ -3,11 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ControlOptionUI : MonoBehaviour
 {
     public Slider slider;
+
+    public void Awake()
+    {
+
+    }
     public void WASD_Clicked()
     {
         OptionValues.GetOptionValue().isControlKey = true;
@@ -51,5 +57,10 @@ public class ControlOptionUI : MonoBehaviour
     public void UpdateVolumText()
     {
         GameObject.Find("TXT_Volume").GetComponent<TextMeshProUGUI>().text = (slider.value).ToString();
+    }
+
+    public void closeclick()
+    {
+        SceneManager.UnloadSceneAsync("Option");
     }
 }
