@@ -10218,9 +10218,12 @@ MonoBehaviour:
   - {fileID: 1506843490}
   - {fileID: 325474499}
   - {fileID: 2076093389}
+  - {fileID: 1999332962}
   - {fileID: 337720783}
   - {fileID: 1640859265}
-  - {fileID: 1999332962}
+  OffNormalColor: {r: 0, g: 0, b: 0, a: 0}
+  OffHighlighedColor: {r: 0, g: 0, b: 0, a: 0}
+  OffPressedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &277735726
 Transform:
   m_ObjectHideFlags: 0
@@ -12816,7 +12819,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 325474502}
-        m_MethodName: stage1click
+        m_MethodName: Stage1Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13505,7 +13508,7 @@ GameObject:
   - component: {fileID: 337720783}
   - component: {fileID: 337720786}
   m_Layer: 5
-  m_Name: StageFourButton
+  m_Name: StageFiveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13524,7 +13527,7 @@ RectTransform:
   m_Children:
   - {fileID: 455545750}
   m_Father: {fileID: 1702881744}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -13570,7 +13573,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 337720784}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 337720786}
+        m_MethodName: Stage4Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &337720784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59821,7 +59835,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1506843493}
-        m_MethodName: tutorial
+        m_MethodName: TutorialClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -63785,7 +63799,7 @@ GameObject:
   - component: {fileID: 1640859265}
   - component: {fileID: 1640859268}
   m_Layer: 5
-  m_Name: StageFiveButton
+  m_Name: StageSixButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63804,7 +63818,7 @@ RectTransform:
   m_Children:
   - {fileID: 2026219174}
   m_Father: {fileID: 1702881744}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -63850,7 +63864,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1640859266}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1640859268}
+        m_MethodName: Stage5Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1640859266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66973,9 +66998,9 @@ RectTransform:
   - {fileID: 1506843489}
   - {fileID: 325474498}
   - {fileID: 2076093388}
+  - {fileID: 1999332961}
   - {fileID: 337720782}
   - {fileID: 1640859264}
-  - {fileID: 1999332961}
   - {fileID: 49905316}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -70351,9 +70376,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Stage2
-
-'
+  m_Text: Stage2
 --- !u!222 &1791298361
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -77897,7 +77920,7 @@ GameObject:
   - component: {fileID: 1999332962}
   - component: {fileID: 1999332965}
   m_Layer: 5
-  m_Name: StageSixButton
+  m_Name: StageFourButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77916,7 +77939,7 @@ RectTransform:
   m_Children:
   - {fileID: 450370244}
   m_Father: {fileID: 1702881744}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -77962,7 +77985,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1999332963}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1999332965}
+        m_MethodName: Stage3Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1999332963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79140,9 +79174,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Stage5
-
-'
+  m_Text: Stage5
 --- !u!222 &2026219176
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -81150,7 +81182,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2076093390}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2076093392}
+        m_MethodName: Stage2Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2076093390
 MonoBehaviour:
   m_ObjectHideFlags: 0

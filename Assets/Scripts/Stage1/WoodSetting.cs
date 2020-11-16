@@ -19,7 +19,10 @@ public class WoodSetting : MonoBehaviour
         if (WoodTransform.position.y >= 0.75f)
             MoveDown();
         else
-            WaterSound.enabled = true;
+        {
+            if(this.gameObject.name == "RoundWood")
+                WaterSound.enabled = true;
+        }
 
     }
 

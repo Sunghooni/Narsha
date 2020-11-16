@@ -10,7 +10,8 @@ public class LoadJsonData : MonoBehaviour
     string JsonPath, JsonData;
     int StageNumber;
     public Button[] StageButton;
-    Color OpenColor;
+    Color OpenNormalColor, OpenHighlightedColor, OpenPressedColor;
+    public Color OffNormalColor, OffHighlighedColor, OffPressedColor;
     ColorBlock CurrentColor;
 
 
@@ -18,7 +19,25 @@ public class LoadJsonData : MonoBehaviour
     {
         JsonPath = Application.dataPath + "/Resources/StageClear.json";
         JsonData = File.ReadAllText(JsonPath);
-        OpenColor = new Color(195 / 255f, 236 / 255f, 172 / 255f);
+        OpenNormalColor = new Color(195 / 255f, 236 / 255f, 172 / 255f);
+        OpenHighlightedColor = new Color(143 / 255f, 255 / 255f, 160 / 255f);
+        OpenPressedColor = new Color(143 / 255f, 255 / 255f, 160 / 255f);
+
+        OffNormalColor = new Color(115 / 225f, 115 / 225f, 115 / 225f);
+        OffHighlighedColor = new Color(77 / 225f, 77 / 225f, 77 / 255f);
+        OffPressedColor = new Color(77 / 225f, 77 / 225f, 77 / 255f);
+    }
+
+    private void Start()
+    {
+        for(int i = 0; i < StageButton.Length; i++)
+        {
+            CurrentColor = StageButton[i].colors;
+            CurrentColor.normalColor = OffNormalColor;
+            CurrentColor.highlightedColor = OffHighlighedColor;
+            CurrentColor.pressedColor = OffPressedColor;
+            StageButton[i].colors = CurrentColor;
+        }
     }
 
     private void Update()
@@ -34,7 +53,9 @@ public class LoadJsonData : MonoBehaviour
         for(int i = 0; i <= StageNumber; i++)
         {
             CurrentColor = StageButton[i].colors;
-            CurrentColor.normalColor = OpenColor;
+            CurrentColor.normalColor = OpenNormalColor;
+            CurrentColor.highlightedColor = OpenHighlightedColor;
+            CurrentColor.pressedColor = OpenPressedColor;
             StageButton[i].colors = CurrentColor;
         }
     }
