@@ -59,7 +59,7 @@ public class InGameUIManager : MonoBehaviour
 
     public void GoNextStage()
     {
-        SceneManager.LoadScene(NextStage);
+        LoadingScene.LoadScene(NextStage);
     }
 
     public void ContinueGame()
