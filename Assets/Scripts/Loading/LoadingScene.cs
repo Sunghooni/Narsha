@@ -23,7 +23,7 @@ public class LoadingScene : MonoBehaviour
         Time.timeScale = 1;
         yield return null;
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
-        op.allowSceneActivation = false;
+       op.allowSceneActivation = false;
 
         float timer = 0.0f;
 

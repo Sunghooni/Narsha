@@ -1,13 +1,26 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
+using System.Text.RegularExpressions;
 
 public class InGameUIManager : MonoBehaviour
 {
     public GameObject PausePanel, ClearPanel, DiePanel, player, Help, ShowHelpImage, MissionText, TutorialPanel;
     public string HelpMessage, NextStage;
     public string[] MissionMessage;
+    string JsonPath, JsonData;
+    int StageNumber;
     bool HelpSelect = false;
+
+    private void Awake()
+    {
+        JsonPath = Application.dataPath + "/Resources/StageClear.json";
+        JsonData = File.ReadAllText(JsonPath);
+
+        JsonData = Regex.Replace(JsonData, @"\D", "");
+        StageNumber = int.Parse(JsonData);
+    }
 
     private void Update()
     {
@@ -59,7 +72,7 @@ public class InGameUIManager : MonoBehaviour
 
     public void GoNextStage()
     {
-        LoadingScene.LoadScene(NextStage);
+        LoadingScene.LoadScene("Stage" + NextStage);
     }
 
     public void ContinueGame()
@@ -73,6 +86,7 @@ public class InGameUIManager : MonoBehaviour
     {
         player.GetComponent<BlockMove>().canInput = false;
         ClearPanel.SetActive(true);
+        File.WriteAllText(JsonPath, NextStage);
     }
 
     public void OnClickHelp()
