@@ -13,7 +13,15 @@ public class OpeningUI : MonoBehaviour
     string t;
     int i = 0;
     int j = 0;
+    int scwidth;
+    int scheight;
     // Start is called before the first frame update
+    public void Awake()
+    {
+        scwidth = Screen.width;
+        scheight = Screen.height;
+        Screen.SetResolution(1920, 1080, Screen.fullScreenMode, 0);
+    }
     public void Start()
     {
         color = Team.GetComponent<UnityEngine.UI.Text>().color;
@@ -55,8 +63,9 @@ public class OpeningUI : MonoBehaviour
             j++;          
         }
         else
-        {
+        {   
             CancelInvoke();
+            Screen.SetResolution(scwidth, scheight, Screen.fullScreenMode);
             SceneManager.LoadScene("Main");
         }
     }
