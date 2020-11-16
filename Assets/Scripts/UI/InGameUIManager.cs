@@ -86,6 +86,8 @@ public class InGameUIManager : MonoBehaviour
     {
         player.GetComponent<BlockMove>().canInput = false;
         ClearPanel.SetActive(true);
+        if (StageNumber >= int.Parse(NextStage))
+            return;
         File.WriteAllText(JsonPath, NextStage);
     }
 
