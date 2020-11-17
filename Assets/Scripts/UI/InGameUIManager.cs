@@ -114,5 +114,4 @@ public class InGameUIManager : MonoBehaviour
         }
         ShowHelpImage.GetComponentInChildren<Text>().text = HelpMessage;
     }
-
 }
