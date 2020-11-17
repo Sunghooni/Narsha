@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GoldBox_Stage2 : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GoldBox_Stage2 : MonoBehaviour
     public GameObject topPart;
     public GameObject leftCover;
     public GameObject rightCover;
+    public GameObject MissionText;
+    public GameObject AudioManager;
     public bool winCheck = false;
 
     private bool isEnter = false;
@@ -27,6 +30,13 @@ public class GoldBox_Stage2 : MonoBehaviour
         if(isEnter)
         {
             GoldBoxAnim();
+            if (isEnter)
+            {
+                MissionText.GetComponent<Text>().color = Color.green;
+                AudioManager.GetComponent<AudioManager>().PlaySounds("CodeComplete");
+            }
+            isEnter = false;
+            Invoke("ShowClearPanel", 1.0f);
         }
     }
 
@@ -88,5 +98,10 @@ public class GoldBox_Stage2 : MonoBehaviour
         {
             isEnter = true;
         }
+    }
+
+    private void ShowClearPanel()
+    {
+        FindObjectOfType<InGameUIManager>().Clear();
     }
 }
