@@ -43,7 +43,7 @@ public class ClearCheck : MonoBehaviour
                 winCheck = true;
                 MissionText.GetComponent<Text>().color = Color.green;
                 IGUI.Clear();
-              }
+            }
            else
             {
                 if (!winCheck)
@@ -51,6 +51,7 @@ public class ClearCheck : MonoBehaviour
                     audioManager.PlaySounds("CodeComplete");
                     MissionText.GetComponent<Text>().color = Color.green;
                     Invoke("StageOneChangeMission", 1.0f);
+                    FixAnswerBlocks();
                 }
                 winCheck = true;
             }
@@ -65,5 +66,14 @@ public class ClearCheck : MonoBehaviour
         MissionText.GetComponent<Text>().color = Color.black;
         MissionText.GetComponent<RectTransform>().sizeDelta = new Vector2(210, MissionText.GetComponent<RectTransform>().sizeDelta.y);
         MissionPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(220, MissionPanel.GetComponent<RectTransform>().sizeDelta.y);
+    }
+
+    void FixAnswerBlocks()
+    {
+        Debug.Log("isFixed");
+        for(int i = 0; i < answerBocks.Length; i++)
+        {
+            answerBocks[i].tag = "Unmovable";
+        }
     }
 }
