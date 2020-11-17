@@ -45,10 +45,7 @@ public class InGameUIManager : MonoBehaviour
             else
             {
                 PausePanel.SetActive(false);
-                if (FindObjectOfType<ClearCheck>().answerCode == "START")
-                    FindObjectOfType<BlockMove>().canInput = true;
-                else
-                    player.GetComponent<BlockMove>().canInput = true;
+                player.GetComponent<BlockMove>().canInput = true;
                 Time.timeScale = 1f;
             }
         }
