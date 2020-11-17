@@ -12,6 +12,8 @@ public class InGameUIManager : MonoBehaviour
     string JsonPath, JsonData;
     int StageNumber;
     bool HelpSelect = false;
+    GameObject audio;
+    AudioSource audioSource;
 
     private void Awake()
     {
@@ -20,6 +22,9 @@ public class InGameUIManager : MonoBehaviour
 
         JsonData = Regex.Replace(JsonData, @"\D", "");
         StageNumber = int.Parse(JsonData);
+
+        audio = GameObject.FindWithTag("BGM");
+        audioSource = audio.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -63,11 +68,13 @@ public class InGameUIManager : MonoBehaviour
     public void BackToStageSelect()
     {
         SceneManager.LoadScene("StageSelect");
+        audioSource.Play();
     }
 
     public void BackToMain()
     {
         SceneManager.LoadScene("Main");
+        audioSource.Play();
     }
 
     public void GoNextStage()
