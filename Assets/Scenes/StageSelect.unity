@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12752,7 +12752,7 @@ GameObject:
   - component: {fileID: 325474499}
   - component: {fileID: 325474502}
   m_Layer: 5
-  m_Name: StageTwoButton
+  m_Name: StageOneButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13508,7 +13508,7 @@ GameObject:
   - component: {fileID: 337720783}
   - component: {fileID: 337720786}
   m_Layer: 5
-  m_Name: StageFiveButton
+  m_Name: StageFourButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13574,8 +13574,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 337720786}
-        m_MethodName: Stage4Click
+      - m_Target: {fileID: 11500000, guid: d25f0fff4ac6ba94db01ab6cb33a865d, type: 3}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -59768,7 +59768,7 @@ GameObject:
   - component: {fileID: 1506843490}
   - component: {fileID: 1506843493}
   m_Layer: 5
-  m_Name: StageOneButton
+  m_Name: TutorialButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63865,8 +63865,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1640859268}
-        m_MethodName: Stage5Click
+      - m_Target: {fileID: 11500000, guid: d25f0fff4ac6ba94db01ab6cb33a865d, type: 3}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -77920,7 +77920,7 @@ GameObject:
   - component: {fileID: 1999332962}
   - component: {fileID: 1999332965}
   m_Layer: 5
-  m_Name: StageFourButton
+  m_Name: StageThreeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77986,8 +77986,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1999332965}
-        m_MethodName: Stage3Click
+      - m_Target: {fileID: 11500000, guid: d25f0fff4ac6ba94db01ab6cb33a865d, type: 3}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -81117,7 +81117,7 @@ GameObject:
   - component: {fileID: 2076093389}
   - component: {fileID: 2076093392}
   m_Layer: 5
-  m_Name: StageThreeButton
+  m_Name: StageTwoButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81183,8 +81183,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2076093392}
-        m_MethodName: Stage2Click
+      - m_Target: {fileID: 11500000, guid: d25f0fff4ac6ba94db01ab6cb33a865d, type: 3}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

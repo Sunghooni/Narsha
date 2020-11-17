@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StageSelector : MonoBehaviour
+public class Stageselector : MonoBehaviour
 {
     GameObject audio;
 
