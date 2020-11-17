@@ -10,9 +10,9 @@ public class LoadJsonData : MonoBehaviour
     string JsonPath, JsonData;
     int StageNumber;
     public Button[] StageButton;
-    Color OpenNormalColor, OpenHighlightedColor, OpenPressedColor;
+    public Color OpenNormalColor, OpenHighlightedColor, OpenPressedColor;
     public Color OffNormalColor, OffHighlighedColor, OffPressedColor;
-    ColorBlock CurrentColor;
+    public ColorBlock CurrentColor;
 
 
     private void Awake()

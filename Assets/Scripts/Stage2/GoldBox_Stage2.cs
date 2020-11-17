@@ -30,12 +30,6 @@ public class GoldBox_Stage2 : MonoBehaviour
         if(isEnter)
         {
             GoldBoxAnim();
-            if (isEnter)
-            {
-                MissionText.GetComponent<Text>().color = Color.green;
-                AudioManager.GetComponent<AudioManager>().PlaySounds("CodeComplete");
-            }
-            isEnter = false;
             Invoke("ShowClearPanel", 1.0f);
         }
     }
@@ -102,6 +96,8 @@ public class GoldBox_Stage2 : MonoBehaviour
 
     private void ShowClearPanel()
     {
+        MissionText.GetComponent<Text>().color = Color.green;
+        AudioManager.GetComponent<AudioManager>().PlaySounds("CodeComplete");
         FindObjectOfType<InGameUIManager>().Clear();
     }
 }
