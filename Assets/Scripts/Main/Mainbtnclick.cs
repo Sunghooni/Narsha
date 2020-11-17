@@ -15,7 +15,6 @@ public class Mainbtnclick : MonoBehaviour
     {   
         BGM.gameObject.tag = "BGM";
         DontDestroyOnLoad(BGM);
-        SceneManager.LoadScene("StageSelect");
-        
+        SceneManager.LoadScene("StageSelect");  
     }
 }

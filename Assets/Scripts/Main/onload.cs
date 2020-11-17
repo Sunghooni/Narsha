@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class onload : MonoBehaviour
 {
-    GameObject audioSource;
+    GameObject Audio;
+    AudioSource audiosource;
     private void Start()
     {
-        audioSource = GameObject.FindWithTag("bgm1");
+        Audio = GameObject.FindWithTag("bgm1");
+        audiosource = Audio.GetComponent<AudioSource>();
         if (GameObject.FindWithTag("BGM") != null)
         {
-            Destroy(audioSource);
+            Destroy(Audio);
         }
         else
         {
 
         }
+       // audiosource.volume = //싱글톤 볼륨
     }
     // Start is called before the first frame update
 
