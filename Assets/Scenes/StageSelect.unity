@@ -13574,8 +13574,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: d25f0fff4ac6ba94db01ab6cb33a865d, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 337720786}
+        m_MethodName: Stage4Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -63799,7 +63799,7 @@ GameObject:
   - component: {fileID: 1640859265}
   - component: {fileID: 1640859268}
   m_Layer: 5
-  m_Name: StageSixButton
+  m_Name: StageFiveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63865,8 +63865,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: d25f0fff4ac6ba94db01ab6cb33a865d, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 1640859268}
+        m_MethodName: Stage5Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -77986,8 +77986,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: d25f0fff4ac6ba94db01ab6cb33a865d, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 1999332965}
+        m_MethodName: Stage3Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -81183,8 +81183,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: d25f0fff4ac6ba94db01ab6cb33a865d, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 2076093392}
+        m_MethodName: Stage2Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
