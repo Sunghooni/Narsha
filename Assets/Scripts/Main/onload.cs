@@ -18,13 +18,14 @@ public class onload : MonoBehaviour
         {
 
         }
-        audiosource.volume = OptionValues.GetOptionValue().Volume;
+        audiosource.volume = OptionValues.GetVolume();
     }
     // Start is called before the first frame update
 
     // Update is called once per frame
     void Update()
     {
-        
+        audiosource.volume = OptionValues.GetVolume();
+        Debug.Log(OptionValues.GetVolume());
     }
 }

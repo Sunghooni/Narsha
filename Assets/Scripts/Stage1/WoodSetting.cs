@@ -6,6 +6,7 @@ public class WoodSetting : MonoBehaviour
 {
     Transform WoodTransform;
     AudioSource WaterSound;
+    public bool isEnd = false;
 
     private void Awake()
     {
@@ -20,8 +21,10 @@ public class WoodSetting : MonoBehaviour
             MoveDown();
         else
         {
-            if(this.gameObject.name == "RoundWood")
+            if (this.gameObject.name == "RoundWood")
+            {
                 WaterSound.enabled = true;
+            }
         }
 
     }

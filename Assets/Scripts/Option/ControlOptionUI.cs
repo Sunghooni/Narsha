@@ -10,14 +10,45 @@ public class ControlOptionUI : MonoBehaviour
 {
     public Slider slider;
 
+    private void Start()
+    {
+        GameObject.Find("TXT_Volume").GetComponent<TextMeshProUGUI>().text = (OptionValues.GetVolume() * 100).ToString();
+        slider.value = OptionValues.GetVolume() * 100;
+        SetControlKeyColor();
+    }
+
     public void WASD_Clicked()
     {
         OptionValues.SetControlKey("HZ_WASD", "VT_WASD");
+        SetControlKeyColor();
     }
 
     public void Direction_Clicked()
     {
         OptionValues.SetControlKey("HZ_DIR", "VT_DIR");
+        SetControlKeyColor();
+    }
+
+    public void SetControlKeyColor()
+    {
+        ColorBlock WASD_CBlock = GameObject.Find("BTN_WASD").GetComponent<Button>().colors;
+        ColorBlock Direction_CBlock = GameObject.Find("BTN_Direction").GetComponent<Button>().colors;
+        if ("HZ_WASD".Equals(OptionValues.GetHzKey()))
+        {
+            WASD_CBlock.normalColor = Color.green;
+            WASD_CBlock.highlightedColor = Color.green;
+            Direction_CBlock.normalColor = Color.white;
+            Direction_CBlock.highlightedColor = Color.white;
+        }
+        else
+        {
+            WASD_CBlock.normalColor = Color.white;
+            WASD_CBlock.highlightedColor = Color.white;
+            Direction_CBlock.normalColor = Color.green;
+            Direction_CBlock.highlightedColor = Color.green;
+        }
+        GameObject.Find("BTN_WASD").GetComponent<Button>().colors = WASD_CBlock;
+        GameObject.Find("BTN_Direction").GetComponent<Button>().colors = Direction_CBlock;
     }
 
     public void Full_Clicked()
@@ -50,9 +81,10 @@ public class ControlOptionUI : MonoBehaviour
         Screen.SetResolution(Row, Col, Screen.fullScreenMode);
     }
 
-    public void UpdateVolumText()
+    public void UpdateVolum()
     {
         GameObject.Find("TXT_Volume").GetComponent<TextMeshProUGUI>().text = (slider.value).ToString();
+        OptionValues.SetVolume(float.Parse((slider.value).ToString()) / 100);
     }
 
     public void closeclick()

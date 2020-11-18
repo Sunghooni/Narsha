@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClearCheck_Stage2 : MonoBehaviour
 {
     public GameObject[] checkBocks;
     public GameObject[] answerBlocks;
     public GameObject ClearBlock;
+    public GameObject MissionText, MissionImage;
     public bool arrayCheck = false;
     public bool templeCheck = false;
     public bool clearCheck = false;
@@ -70,13 +72,20 @@ public class ClearCheck_Stage2 : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 pos = ClearBlock.transform.position;
-        pos = new Vector3(pos.x, pos.y, pos.z + 0.5f);
-
+        pos = new Vector3(pos.x, pos.y, pos.z);
+        Debug.DrawRay(pos, Vector3.up * 1, Color.red, 1f);
         if(lengthNum == 1)
         {
-            if(Physics.Raycast(pos, Vector3.up, out hit, 0.6f))
+            if(Physics.Raycast(pos, Vector3.up, out hit, 0.6f) && hit.transform.tag.Equals("Player"))
             {
                 templeCheck = true;
+                DeleteExtraBlocks();
+                if (!isFinished)
+                {
+                    MissionText.GetComponent<Text>().color = Color.green;
+                    FindObjectOfType<AudioManager>().PlaySounds("CodeComplete");
+                    Invoke("ChangeMissionText", 1.0f);
+                }
                 isFinished = true;
                 FixBlocks();
             }
@@ -89,5 +98,18 @@ public class ClearCheck_Stage2 : MonoBehaviour
         {
             answerBlocks[i].tag = "Unmovable";
         }
+    }
+
+    void DeleteExtraBlocks()
+    {
+        Destroy(answerBlocks[3]);
+        Destroy(answerBlocks[5]);
+    }
+
+    void ChangeMissionText()
+    {
+        MissionImage.GetComponent<RectTransform>().sizeDelta = new Vector2(MissionImage.GetComponent<RectTransform>().sizeDelta.x, 34);
+        MissionText.GetComponent<Text>().text = "보물상자를 여세요";
+        MissionText.GetComponent<Text>().color = Color.black;
     }
 }
