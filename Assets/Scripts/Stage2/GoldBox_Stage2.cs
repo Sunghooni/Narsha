@@ -19,6 +19,7 @@ public class GoldBox_Stage2 : MonoBehaviour
     private bool isEnter = false;
     private bool isShowed = false;
     private float cameraDelay = 0f;
+    private bool clearEft = true;
 
     private void FixedUpdate()
     {
@@ -97,7 +98,11 @@ public class GoldBox_Stage2 : MonoBehaviour
     private void ShowClearPanel()
     {
         MissionText.GetComponent<Text>().color = Color.green;
-        AudioManager.GetComponent<AudioManager>().PlaySounds("CodeComplete");
+        if(clearEft)
+        {
+            AudioManager.GetComponent<AudioManager>().PlaySounds("CodeComplete");
+            clearEft = false;
+        }
         FindObjectOfType<InGameUIManager>().Clear();
     }
 }
