@@ -12,8 +12,8 @@ public class ControlOptionUI : MonoBehaviour
 
     private void Start()
     {
-        GameObject.Find("TXT_Volume").GetComponent<TextMeshProUGUI>().text = OptionValues.GetOptionValue().Volume.ToString();
-        slider.value = OptionValues.GetOptionValue().Volume;
+        GameObject.Find("TXT_Volume").GetComponent<TextMeshProUGUI>().text = OptionValues.GetVolume().ToString();
+        slider.value = OptionValues.GetVolume();
         SetControlKeyColor();
     }
 
@@ -84,7 +84,7 @@ public class ControlOptionUI : MonoBehaviour
     public void UpdateVolum()
     {
         GameObject.Find("TXT_Volume").GetComponent<TextMeshProUGUI>().text = (slider.value).ToString();
-        OptionValues.GetOptionValue().Volume = Int32.Parse((slider.value).ToString());
+        OptionValues.SetVolume((slider.value).ToString());
     }
 
     public void closeclick()

@@ -6,23 +6,19 @@ using UnityEngine.Experimental.Rendering;
 public class OptionValues
 {
 
-    private int _Volume = 100;
+    private static int _Volume = 100;
     private static string hzControlKey = "HZ_WASD";
     private static string vtControlKey = "VT_WASD";
 
-    public int Volume
+    public static void SetVolume(string value)
     {
-        set { _Volume = value; }
-        get { return _Volume; }
+        _Volume = int.Parse(value);
+        //Debug.Log(_Volume);
     }
 
-    static OptionValues optionvalue = new OptionValues();
-
-    public static OptionValues GetOptionValue()
+    public static int GetVolume()
     {
-        if (optionvalue == null)
-            optionvalue = new OptionValues();
-        return optionvalue;
+        return _Volume;
     }
 
     public static void SetControlKey(string hzValue, string vtValue)

@@ -17,7 +17,16 @@ public class AudioManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+    }
 
+    private void Update()
+    {
+        AudioSource bgm;
+        if (gameObject.GetComponent<AudioSource>())
+        {
+            bgm = gameObject.GetComponent<AudioSource>();
+            bgm.volume = OptionValues.GetVolume();
+        }
     }
 
     public void PlaySounds(string audioIndex)
@@ -32,12 +41,13 @@ public class AudioManager : MonoBehaviour
             if(audio.name.Equals(audioIndex))
             {
                 audioPlayer.clip = audio;
+                audioPlayer.volume = OptionValues.GetVolume();
                 audioPlayer.Play();
             }
         }
     }
 
-    public void VolumeSize(float size)
+    public static void VolumeSize(float size)
     {
         AudioSource audioPlayer = StaticObject.GetInstance().GetComponent<AudioSource>();
         if (audioPlayer == null)

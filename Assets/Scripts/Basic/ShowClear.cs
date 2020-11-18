@@ -10,6 +10,7 @@ public class ShowClear : MonoBehaviour
     [SerializeField]
     int StageNumber;
     int StageOneShowWoodIdx = 0;
+    private Coroutine ClearEventHandle; 
     public bool isClear;
 
     private void Awake()
@@ -23,6 +24,7 @@ public class ShowClear : MonoBehaviour
         {
             if (!isClear)
             {
+                ClearEventHandle = StartCoroutine(BlockInput());
                 FindObjectOfType<BlockMove>().canInput = false;
                 ClearCamera.enabled = true;
                 MainCamera.enabled = false;
@@ -34,6 +36,15 @@ public class ShowClear : MonoBehaviour
                         break;
                     }
             }
+        }
+    }
+
+    IEnumerator BlockInput()
+    {
+        while(true)
+        {
+            FindObjectOfType<BlockMove>().canInput = false;
+            yield return new WaitForEndOfFrame();
         }
     }
 
@@ -58,8 +69,8 @@ public class ShowClear : MonoBehaviour
 
     void StageClearEnd()
     {
-        FindObjectOfType<BlockMove>().canInput = true;
         ClearCamera.enabled = false;
         MainCamera.enabled = true;
+        StopCoroutine(ClearEventHandle);
     }
 }

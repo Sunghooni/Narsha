@@ -30,6 +30,7 @@ public class BlockMove : MonoBehaviour
         isGround();
         GetInput();
         ResetBlock();
+        AudioManager.VolumeSize(float.Parse(OptionValues.GetVolume().ToString()));
     }
 
     void GetInput()
@@ -77,6 +78,7 @@ public class BlockMove : MonoBehaviour
 
         if (Physics.Raycast(movePos, transform.right, out moveHit, 1)) 
         {
+            Debug.Log("Raycast Hit");
             if (moveHit.transform.tag.Equals("Unmovable"))
             {
                 canMove = false;

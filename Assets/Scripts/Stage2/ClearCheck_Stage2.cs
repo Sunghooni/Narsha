@@ -72,8 +72,8 @@ public class ClearCheck_Stage2 : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 pos = ClearBlock.transform.position;
-        pos = new Vector3(pos.x, pos.y, pos.z + 0.5f);
-
+        pos = new Vector3(pos.x, pos.y, pos.z);
+        Debug.DrawRay(pos, Vector3.up * 1, Color.red, 1f);
         if(lengthNum == 1)
         {
             if(Physics.Raycast(pos, Vector3.up, out hit, 0.6f))
