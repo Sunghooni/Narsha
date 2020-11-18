@@ -6,12 +6,14 @@ public class ShowClear : MonoBehaviour
 {
     public Camera MainCamera, ClearCamera;
     public GameObject[] StageOneObject;
+    public GameObject ClearCollider;
     public Vector3 InstantiatePosition;
     [SerializeField]
     int StageNumber;
     int StageOneShowWoodIdx = 0;
     private Coroutine ClearEventHandle; 
     public bool isClear;
+    bool SetBlock = false;
 
     private void Awake()
     {
@@ -22,7 +24,7 @@ public class ShowClear : MonoBehaviour
     {
         if (FindObjectOfType<ClearCheck>().winCheck)
         {
-            if (!isClear)
+            if (!SetBlock)
             {
                 ClearEventHandle = StartCoroutine(BlockInput());
                 FindObjectOfType<BlockMove>().canInput = false;
@@ -57,8 +59,9 @@ public class ShowClear : MonoBehaviour
 
     void StageOne()
     {
+        ClearCollider.SetActive(true);
         float timer = 0;
-        isClear = true;
+        SetBlock = true;
         for (double i = 0; i < StageOneObject.Length; i += 1)
         {
             Invoke("StageOneClear",  timer);
@@ -69,6 +72,8 @@ public class ShowClear : MonoBehaviour
 
     void StageClearEnd()
     {
+        ClearCollider.SetActive(false);
+        FindObjectOfType<BlockMove>().canInput = true;
         ClearCamera.enabled = false;
         MainCamera.enabled = true;
         StopCoroutine(ClearEventHandle);
