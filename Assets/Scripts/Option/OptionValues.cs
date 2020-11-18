@@ -6,17 +6,17 @@ using UnityEngine.Experimental.Rendering;
 public class OptionValues
 {
 
-    private static int _Volume = 100;
+    private static float _Volume = 1;
     private static string hzControlKey = "HZ_WASD";
     private static string vtControlKey = "VT_WASD";
 
-    public static void SetVolume(string value)
+    public static void SetVolume(float value)
     {
-        _Volume = int.Parse(value);
+        _Volume = value;
         //Debug.Log(_Volume);
     }
 
-    public static int GetVolume()
+    public static float GetVolume()
     {
         return _Volume;
     }
