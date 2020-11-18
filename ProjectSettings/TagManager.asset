@@ -9,6 +9,7 @@ TagManager:
   - Testblock
   - BGM
   - bgm1
+  - End
   layers:
   - Default
   - TransparentFX

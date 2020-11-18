@@ -19,7 +19,7 @@ public class BlockMove : MonoBehaviour
     Vector2 InputAxis;
     private Vector3 initialRotator;
     private float delay = 0.3f;
-    private float inputCtrl = 1;
+    public float inputCtrl = 1;
     private void Awake()
     {
         initialRotator = transform.rotation.eulerAngles;
@@ -98,7 +98,7 @@ public class BlockMove : MonoBehaviour
 
     void ResetBlock()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R) && canInput)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

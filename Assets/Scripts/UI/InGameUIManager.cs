@@ -12,6 +12,7 @@ public class InGameUIManager : MonoBehaviour
     string JsonPath, JsonData;
     int StageNumber;
     bool HelpSelect = false;
+    public bool ShowEnd = false;
     GameObject audio;
     AudioSource audioSource;
 
@@ -30,6 +31,7 @@ public class InGameUIManager : MonoBehaviour
     private void Update()
     {
         GamePause();
+        Debug.Log(ShowEnd);
     }
 
     void GamePause()
@@ -45,7 +47,10 @@ public class InGameUIManager : MonoBehaviour
             else
             {
                 PausePanel.SetActive(false);
-                player.GetComponent<BlockMove>().canInput = true;
+                if(!ShowEnd)
+                    player.GetComponent<BlockMove>().canInput = true;
+                else
+                    player.GetComponent<BlockMove>().canInput = false;
                 Time.timeScale = 1f;
             }
         }

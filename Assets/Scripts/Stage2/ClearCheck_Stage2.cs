@@ -76,7 +76,7 @@ public class ClearCheck_Stage2 : MonoBehaviour
         Debug.DrawRay(pos, Vector3.up * 1, Color.red, 1f);
         if(lengthNum == 1)
         {
-            if(Physics.Raycast(pos, Vector3.up, out hit, 0.6f))
+            if(Physics.Raycast(pos, Vector3.up, out hit, 0.6f) && hit.transform.tag.Equals("Player"))
             {
                 templeCheck = true;
                 if (!isFinished)
