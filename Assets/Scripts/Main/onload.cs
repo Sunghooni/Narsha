@@ -18,7 +18,7 @@ public class onload : MonoBehaviour
         {
 
         }
-       // audiosource.volume = //싱글톤 볼륨
+        audiosource.volume = OptionValues.GetOptionValue().Volume;
     }
     // Start is called before the first frame update
 
