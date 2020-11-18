@@ -7,8 +7,8 @@ public class OptionValues
 {
 
     private int _Volume = 100;
-    private static string hzControlKey = "Horizontal";
-    private static string vtControlKey = "Vertical";
+    private static string hzControlKey = "HZ_WASD";
+    private static string vtControlKey = "VT_WASD";
 
     public int Volume
     {
