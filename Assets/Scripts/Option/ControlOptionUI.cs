@@ -10,18 +10,14 @@ public class ControlOptionUI : MonoBehaviour
 {
     public Slider slider;
 
-    public void Awake()
-    {
-
-    }
     public void WASD_Clicked()
     {
-        OptionValues.GetOptionValue().isControlKey = true;
+        OptionValues.SetControlKey("HZ_WASD", "VT_WASD");
     }
 
     public void Direction_Clicked()
     {
-        OptionValues.GetOptionValue().isControlKey = false;
+        OptionValues.SetControlKey("HZ_DIR", "VT_DIR");
     }
 
     public void Full_Clicked()

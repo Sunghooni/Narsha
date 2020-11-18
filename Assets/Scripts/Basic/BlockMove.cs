@@ -34,8 +34,8 @@ public class BlockMove : MonoBehaviour
 
     void GetInput()
     {
-        float horz = Input.GetAxisRaw("Horizontal") * inputCtrl;
-        float vert = Input.GetAxisRaw("Vertical") * inputCtrl;
+        float horz = Input.GetAxisRaw(OptionValues.GetHzKey()) * inputCtrl;
+        float vert = Input.GetAxisRaw(OptionValues.GetVtKey()) * inputCtrl;
         InputAxis = new Vector2(horz, vert);
 
         if(InputAxis.sqrMagnitude > 0 && canInput)
