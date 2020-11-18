@@ -79,6 +79,7 @@ public class ClearCheck_Stage2 : MonoBehaviour
             if(Physics.Raycast(pos, Vector3.up, out hit, 0.6f) && hit.transform.tag.Equals("Player"))
             {
                 templeCheck = true;
+                DeleteExtraBlocks();
                 if (!isFinished)
                 {
                     MissionText.GetComponent<Text>().color = Color.green;
@@ -97,6 +98,12 @@ public class ClearCheck_Stage2 : MonoBehaviour
         {
             answerBlocks[i].tag = "Unmovable";
         }
+    }
+
+    void DeleteExtraBlocks()
+    {
+        Destroy(answerBlocks[3]);
+        Destroy(answerBlocks[5]);
     }
 
     void ChangeMissionText()
