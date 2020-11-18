@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TempleCtrl : MonoBehaviour
 {
+    public AudioSource templeSound;
     public ClearCheck_Stage2 clearCheck;
     public int length;
 
@@ -12,6 +13,7 @@ public class TempleCtrl : MonoBehaviour
     Vector3 downPos;
 
     public bool isMoving = false;
+    private int preLength = 0;
 
     private void Awake()
     {
@@ -21,7 +23,18 @@ public class TempleCtrl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        TempleSound();
+
         toPos = (length <= clearCheck.lengthNum) ? downPos : upPos;
         transform.position = Vector3.Lerp(transform.position, toPos, Time.deltaTime * 2);
+    }
+
+    private void TempleSound()
+    {
+        if(preLength != clearCheck.lengthNum && length == 1)
+        {
+            templeSound.Play();
+            preLength = clearCheck.lengthNum;
+        }
     }
 }
