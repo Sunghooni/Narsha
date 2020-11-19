@@ -12,7 +12,7 @@ public class Tutorial : MonoBehaviour
     private void Awake()
     {
         TutorialText = new string[] { "WASD를 눌러 움직일 수 있어요" ,
-                                                              "블럭을 밀어 옮겨보세요" ,
+                                                              "블럭을 밀어 옮길 수 있어요" ,
                                                               "R키를 눌러 다시 시작 할 수 있어요",
                                                               "느낌표 버튼을 눌러 힌트를 받으세요",
                                                               "왼쪽 위 미션을 수행하세요",

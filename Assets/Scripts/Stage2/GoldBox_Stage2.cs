@@ -8,6 +8,7 @@ public class GoldBox_Stage2 : MonoBehaviour
 {
     public ClearCheck_Stage2 clearCheck;
     public Camera Camera;
+    public InGameUIManager IGUI;
     public GameObject goldBox;
     public GameObject topPart;
     public GameObject leftCover;
@@ -31,7 +32,7 @@ public class GoldBox_Stage2 : MonoBehaviour
         if(isEnter)
         {
             GoldBoxAnim();
-            Invoke("ShowClearPanel", 1.0f);
+            Invoke("ShowClearPanel", 0.3f);
         }
     }
 
@@ -103,6 +104,6 @@ public class GoldBox_Stage2 : MonoBehaviour
             AudioManager.GetComponent<AudioManager>().PlaySounds("CodeComplete");
             clearEft = false;
         }
-        FindObjectOfType<InGameUIManager>().Clear();
+        IGUI.Clear();
     }
 }

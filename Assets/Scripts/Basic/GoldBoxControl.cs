@@ -23,7 +23,7 @@ public class GoldBoxControl : MonoBehaviour
         {
             GoldBoxAnim();
             MissionText.GetComponent<Text>().color = Color.green;
-            Invoke("ShowClearPanel", 1.0f);
+            Invoke("ShowClearPanel", 0.15f);
         }
         //Debug.Log(GoldBoxPart.transform.rotation.z);
     }
