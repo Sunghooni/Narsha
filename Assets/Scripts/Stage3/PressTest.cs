@@ -6,10 +6,6 @@ public class PressTest : MonoBehaviour
 {
     public GameObject player;
 
-    private void Start()
-    {
-
-    }
     private void OnTriggerEnter(Collider other)
     { 
         if(other.gameObject == player)

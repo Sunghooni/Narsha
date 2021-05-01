@@ -7,11 +7,13 @@ public class Stageselector : MonoBehaviour
 {
     GameObject audio;
     AudioSource audiosource;
+    private LoadJsonData _LoadJsonData;
 
     private void Start()
     {
         audio = GameObject.FindWithTag("BGM");
         audiosource = audio.GetComponent<AudioSource>();
+        _LoadJsonData = FindObjectOfType<LoadJsonData>();
     }
     public void TutorialClick()
     {
@@ -20,44 +22,54 @@ public class Stageselector : MonoBehaviour
     }
     public void Stage1Click()
     {
-        if (FindObjectOfType<LoadJsonData>().StageButton[1].colors.normalColor == FindObjectOfType<LoadJsonData>().OffNormalColor)
+        if (_LoadJsonData.StageButton[1].colors.normalColor == _LoadJsonData.OffNormalColor)
+        {
             return;
+        }
         LoadingScene.LoadScene("Stage1");
         audiosource.Stop();
     }
 
     public void Stage2Click()
     {
-        if (FindObjectOfType<LoadJsonData>().StageButton[2].colors.normalColor == FindObjectOfType<LoadJsonData>().OffNormalColor)
+        if (_LoadJsonData.StageButton[2].colors.normalColor == _LoadJsonData.OffNormalColor)
+        {
             return;
+        }
         LoadingScene.LoadScene("Stage2");
         audiosource.Stop();
     }
 
     public void Stage3Click()
     {
-        if (FindObjectOfType<LoadJsonData>().StageButton[3].colors.normalColor == FindObjectOfType<LoadJsonData>().OffNormalColor)
+        if (_LoadJsonData.StageButton[3].colors.normalColor == _LoadJsonData.OffNormalColor)
+        {
             return;
+        }
         LoadingScene.LoadScene("Stage3");
         audiosource.Stop();
     }
 
     public void Stage4Click()
     {
-        if (FindObjectOfType<LoadJsonData>().StageButton[4].colors.normalColor == FindObjectOfType<LoadJsonData>().OffNormalColor)
+        if (_LoadJsonData.StageButton[4].colors.normalColor == _LoadJsonData.OffNormalColor)
+        {
             return;
+        }
         LoadingScene.LoadScene("Stage4");
         audiosource.Stop();
     }
 
     public void Stage5Click()
     {
-        if (FindObjectOfType<LoadJsonData>().StageButton[5].colors.normalColor == FindObjectOfType<LoadJsonData>().OffNormalColor)
+        if (_LoadJsonData.StageButton[5].colors.normalColor == _LoadJsonData.OffNormalColor)
+        {
             return;
+        }
         LoadingScene.LoadScene("Stage5");
         audiosource.Stop();
     }
-    public void beforeClick()
+    public void BeforeClick()
     {
         SceneManager.LoadScene("Main");
     }

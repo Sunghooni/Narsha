@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class GoldBoxControl : MonoBehaviour
 {
     public GameObject GoldBoxPart, GoldBox, ClearPanel, MissionText;
-    Rigidbody GoldBoxRigidBody;
-    bool isPlayer = false;
     public bool Clear = false;
+    private bool isPlayer = false;
+
+    Rigidbody GoldBoxRigidBody;
     InGameUIManager IGUI;
 
     private void Awake()
@@ -19,34 +20,40 @@ public class GoldBoxControl : MonoBehaviour
 
     private void Update()
     {
+        float showClearPanelDelay = 0.15f;
+
         if(isPlayer)
         {
-            GoldBoxAnim();
             MissionText.GetComponent<Text>().color = Color.green;
-            Invoke("ShowClearPanel", 0.15f);
+
+            GoldBoxAnim();
+            Invoke(nameof(ShowClearPanel), showClearPanelDelay);
         }
-        //Debug.Log(GoldBoxPart.transform.rotation.z);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        float boxOpenForce = 1.5f;
+
+        if (other.gameObject.CompareTag("Player"))
         {
             if (!isPlayer)
             {
-                GoldBoxRigidBody.AddForce(Vector3.up * 1.5f, ForceMode.Impulse);
+                GoldBoxRigidBody.AddForce(Vector3.up * boxOpenForce, ForceMode.Impulse);
                 FindObjectOfType<AudioManager>().PlaySounds("CodeComplete");
             }
-            Debug.Log("fhuwef");
             isPlayer = true;
         }
     }
 
     private void GoldBoxAnim()
     {
-        if (isPlayer && GoldBoxPart.transform.rotation.z >= -0.65f)
+        float maxOpenRot = -0.65f;
+        float openSpeed = 1000f;
+
+        if (isPlayer && GoldBoxPart.transform.rotation.z >= maxOpenRot)
         {
-            GoldBoxPart.transform.Rotate(-Vector3.forward * 1000.0f * Time.deltaTime);
+            GoldBoxPart.transform.Rotate(-Vector3.forward * openSpeed * Time.deltaTime);
         }
     }
 

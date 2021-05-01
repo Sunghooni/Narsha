@@ -11,7 +11,7 @@ public class Mainbtnclick : MonoBehaviour
     {
         BGM = GameObject.Find("StartMusic");
     }
-    public void onclickstart()
+    public void Onclickstart()
     {   
         BGM.gameObject.tag = "BGM";
         DontDestroyOnLoad(BGM);

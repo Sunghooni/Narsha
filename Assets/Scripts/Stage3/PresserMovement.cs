@@ -5,7 +5,6 @@ using UnityEngine;
 public class PresserMovement : MonoBehaviour
 {
     public bool startAct = false;
-
     private Vector3 rotatePos;
 
     private void Awake()
@@ -17,7 +16,7 @@ public class PresserMovement : MonoBehaviour
     {
         if(startAct)
         {
-            StartCoroutine("PressDown");
+            StartCoroutine(nameof(PressDown));
         }
     }
 

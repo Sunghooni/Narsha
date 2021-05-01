@@ -11,13 +11,16 @@ public class Tutorial : MonoBehaviour
     public GameObject TutorialPanel, BlockArrow, AnswerBlockArrow, ClearPanel, PausePanel, Help;
     private void Awake()
     {
-        TutorialText = new string[] { "WASD를 눌러 움직일 수 있어요" ,
-                                                              "블럭을 밀어 옮길 수 있어요" ,
-                                                              "R키를 눌러 다시 시작 할 수 있어요",
-                                                              "느낌표 버튼을 눌러 힌트를 받으세요",
-                                                              "왼쪽 위 미션을 수행하세요",
-                                                              "ESC키를 눌러 일시정지 할 수 있어요",
-                                                              "정답블럭칸에 START를 맞춰보세요!"};
+        TutorialText = new string[] 
+        { 
+            "WASD를 눌러 움직일 수 있어요" ,
+            "블럭을 밀어 옮길 수 있어요" ,
+            "R키를 눌러 다시 시작 할 수 있어요",
+            "느낌표 버튼을 눌러 힌트를 받으세요",
+            "왼쪽 위 미션을 수행하세요",
+            "ESC키를 눌러 일시정지 할 수 있어요",
+            "정답블럭칸에 START를 맞춰보세요!"
+        };
         content.text = TutorialText[idx];
         BlockArrow.SetActive(false);
         AnswerBlockArrow.SetActive(false);
@@ -32,9 +35,11 @@ public class Tutorial : MonoBehaviour
     void Update()
     {
         ControlText();
-        //ShowObject();
+        
         if (TutorialPanel.activeInHierarchy)
+        {
             FindObjectOfType<BlockMove>().canInput = false;
+        }
     }
 
     private void ControlText()
@@ -47,16 +52,15 @@ public class Tutorial : MonoBehaviour
                 AnswerBlockArrow.SetActive(false);
                 TutorialPanel.SetActive(false);
                 FindObjectOfType<BlockMove>().canInput = true;
-                Debug.Log(FindObjectOfType<BlockMove>().gameObject.name);
                 return;
             }
             else
+            {
                 FindObjectOfType<BlockMove>().canInput = false;
+            }
             content.text = TutorialText[idx];
             ShowObject();
-           
            }
-
       }
 
     private void ShowObject()

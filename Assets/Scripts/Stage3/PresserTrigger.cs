@@ -12,11 +12,11 @@ public class PresserTrigger : MonoBehaviour
 
     private void Update()
     {
-        if(sign != null && clearCheck.enterCheck)
+        if (sign != null && clearCheck.enterCheck)
         {
             PresserCtrl();
         }
-        if(tryCnt != 0)
+        if (tryCnt != 0)
         {
             StartPress();
         }
