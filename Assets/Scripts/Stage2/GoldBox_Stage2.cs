@@ -24,22 +24,27 @@ public class GoldBox_Stage2 : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float templeCheckDelay = 0.5f;
+        float enterDelay = 0.3f;
+
         if (clearCheck.templeCheck)
         {
-            Invoke("CameraCtrl", 0.5f);
-            Invoke("ShowBox", 0.5f);
+            Invoke(nameof(CameraCtrl), templeCheckDelay);
+            Invoke(nameof(ShowBox), templeCheckDelay);
         }
         if(isEnter)
         {
             GoldBoxAnim();
-            Invoke("ShowClearPanel", 0.3f);
+            Invoke(nameof(ShowClearPanel), enterDelay);
         }
     }
 
     private void CameraCtrl()
     {
         if (isShowed)
+        {
             Camera.depth = 0;
+        }
         else
         {
             Camera.depth = -2;
@@ -48,20 +53,24 @@ public class GoldBox_Stage2 : MonoBehaviour
 
     private void ShowBox()
     {
-        if (leftCover.transform.position.x > -3.75f)
+        float coverOpenedX = -3.75f;
+        float boxToHeight = 1.5f;
+        float boxShowSpeed = 1.5f;
+
+        if (leftCover.transform.position.x > coverOpenedX)
         {
             leftCover.transform.Translate(Vector3.left * Time.deltaTime);
             rightCover.transform.Translate(Vector3.right * Time.deltaTime);
         }
-        else if(goldBox.transform.position.y <= 1.5f)
+        else if (goldBox.transform.position.y <= boxToHeight)
         {
-            goldBox.transform.Translate(Vector3.up * Time.deltaTime * 1.5f);
+            goldBox.transform.Translate(Vector3.up * Time.deltaTime * boxShowSpeed);
         }
         else
         {
             if (cameraDelay > 0.5f)
             {
-                StartCoroutine("UpDelay");
+                StartCoroutine(nameof(UpDelay));
                 isShowed = true;
             }
 
@@ -71,9 +80,12 @@ public class GoldBox_Stage2 : MonoBehaviour
 
     private void GoldBoxAnim()
     {
-        if (topPart.transform.rotation.x < 0.4f)
+        float boxOpenedRotX = 0.4f;
+        float boxOpenSpeed = 1000f;
+
+        if (topPart.transform.rotation.x < boxOpenedRotX)
         {
-            topPart.transform.Rotate(Vector3.up * 1000.0f * Time.deltaTime);
+            topPart.transform.Rotate(Vector3.up * boxOpenSpeed * Time.deltaTime);
         }
         else
         {
@@ -83,14 +95,15 @@ public class GoldBox_Stage2 : MonoBehaviour
 
     IEnumerator UpDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        float delayTime = 0.5f;
+
+        yield return new WaitForSeconds(delayTime);
         clearCheck.lengthNum = 0;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
-        if(other.gameObject.tag.Equals("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
             isEnter = true;
         }
@@ -98,12 +111,13 @@ public class GoldBox_Stage2 : MonoBehaviour
 
     private void ShowClearPanel()
     {
-        MissionText.GetComponent<Text>().color = Color.green;
-        if(clearEft)
+        if (clearEft)
         {
             AudioManager.GetComponent<AudioManager>().PlaySounds("CodeComplete");
             clearEft = false;
         }
+
+        MissionText.GetComponent<Text>().color = Color.green;
         IGUI.Clear();
     }
 }

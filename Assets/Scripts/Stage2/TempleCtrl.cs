@@ -7,12 +7,11 @@ public class TempleCtrl : MonoBehaviour
     public AudioSource templeSound;
     public ClearCheck_Stage2 clearCheck;
     public int length;
-
-    Vector3 toPos;
-    Vector3 upPos;
-    Vector3 downPos;
-
     public bool isMoving = false;
+
+    private Vector3 toPos;
+    private Vector3 upPos;
+    private Vector3 downPos;
     private int preLength = 0;
 
     private void Awake()

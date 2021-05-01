@@ -5,7 +5,6 @@ using UnityEngine.Experimental.Rendering;
 
 public class OptionValues
 {
-
     private static float _Volume = 1;
     private static string hzControlKey = "HZ_WASD";
     private static string vtControlKey = "VT_WASD";

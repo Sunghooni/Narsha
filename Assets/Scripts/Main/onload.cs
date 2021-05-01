@@ -10,22 +10,16 @@ public class onload : MonoBehaviour
     {
         Audio = GameObject.FindWithTag("bgm1");
         audiosource = Audio.GetComponent<AudioSource>();
+
         if (GameObject.FindWithTag("BGM") != null)
         {
             Destroy(Audio);
         }
-        else
-        {
-
-        }
         audiosource.volume = OptionValues.GetVolume();
     }
-    // Start is called before the first frame update
 
-    // Update is called once per frame
     void Update()
     {
         audiosource.volume = OptionValues.GetVolume();
-        Debug.Log(OptionValues.GetVolume());
     }
 }

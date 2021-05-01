@@ -23,15 +23,16 @@ public class ClearCheck_Stage3 : MonoBehaviour
 
     void ArrayCheck()
     {
-        RaycastHit hit;
         for (int i = 0; i < checkBocks.Length; i++)
         {
-            if (Physics.Raycast(checkBocks[i].transform.position, Vector3.up, out hit, 2) && hit.transform.tag != "Player")
+            Ray ray = new Ray(checkBocks[i].transform.position, Vector3.up);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, 2) && !hit.transform.CompareTag("Player"))
             {
                 CodeBlock codeBlock = hit.transform.gameObject.GetComponent<CodeBlock>();
                 input += codeBlock.code;
 
-                if(i == 3)
+                if (i == 3)
                 {
                     sign = codeBlock.code;
                     Debug.Log(sign);
@@ -44,7 +45,6 @@ public class ClearCheck_Stage3 : MonoBehaviour
             {
                 if(input.Equals(answerCode[i]))
                 {
-                    Debug.Log("Right!");
                     arrayCheck = true;
                     break;
                 }
@@ -60,10 +60,11 @@ public class ClearCheck_Stage3 : MonoBehaviour
 
     void EnterCheck()
     {
-        RaycastHit hit;
-        if(arrayCheck)
+        if (arrayCheck)
         {
-            if (Physics.Raycast(enterBlock.transform.position, Vector3.up, out hit, 2f) && hit.transform.tag.Equals("Player"))
+            Ray ray = new Ray(enterBlock.transform.position, Vector3.up);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, 2f) && hit.transform.CompareTag("Player"))
             {
                 enterCheck = true;
                 player.GetComponent<BlockMove>().canInput = false;

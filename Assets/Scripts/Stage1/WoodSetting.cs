@@ -11,25 +11,29 @@ public class WoodSetting : MonoBehaviour
     private void Awake()
     {
         WoodTransform = GetComponent<Transform>();
-        if (this.gameObject.name == "RoundWood")
+
+        if (this.gameObject.name.Equals("RoundWood"))
+        {
             WaterSound = this.gameObject.GetComponent<AudioSource>();
+        }
     }
 
     private void FixedUpdate()
     {
         if (WoodTransform.position.y >= 0.75f)
+        {
             MoveDown();
+        }
         else
         {
-            if (this.gameObject.name == "RoundWood")
+            if (this.gameObject.name.Equals("RoundWood"))
             {
                 WaterSound.enabled = true;
             }
         }
-
     }
 
-    void MoveDown()
+    private void MoveDown()
     {
         transform.Translate(-Vector3.right * 5 * Time.deltaTime);
     }

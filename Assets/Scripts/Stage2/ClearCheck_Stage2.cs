@@ -30,15 +30,16 @@ public class ClearCheck_Stage2 : MonoBehaviour
 
     void ArrayCheck()
     {
-        RaycastHit hit;
         for (int i = 0; i < checkBocks.Length; i++)
         {
-            if (Physics.Raycast(checkBocks[i].transform.position, Vector3.up, out hit, 2) && hit.transform.tag != "Player")
+            Ray ray = new Ray(checkBocks[i].transform.position, Vector3.up);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, 2) && !hit.transform.CompareTag("Player"))
             {
                 CodeBlock codeBlock = hit.transform.gameObject.GetComponent<CodeBlock>();
                 input += codeBlock.code;
 
-                if(i == checkBocks.Length - 2)
+                if (i == checkBocks.Length - 2)
                 {
                     lengthTemp = codeBlock.code;
                 }
@@ -70,21 +71,22 @@ public class ClearCheck_Stage2 : MonoBehaviour
 
     void OpenBoxCheck()
     {
-        RaycastHit hit;
         Vector3 pos = ClearBlock.transform.position;
-        pos = new Vector3(pos.x, pos.y, pos.z);
-        Debug.DrawRay(pos, Vector3.up * 1, Color.red, 1f);
-        if(lengthNum == 1)
+        float rayLength = 0.6f;
+        float textChangeDelay = 1.0f;
+
+        if (lengthNum == 1)
         {
-            if(Physics.Raycast(pos, Vector3.up, out hit, 0.6f) && hit.transform.tag.Equals("Player"))
+            if (Physics.Raycast(pos, Vector3.up, out RaycastHit hit, rayLength) && hit.transform.CompareTag("Player"))
             {
                 templeCheck = true;
                 DeleteExtraBlocks();
+
                 if (!isFinished)
                 {
                     MissionText.GetComponent<Text>().color = Color.green;
                     FindObjectOfType<AudioManager>().PlaySounds("CodeComplete");
-                    Invoke("ChangeMissionText", 1.0f);
+                    Invoke(nameof(ChangeMissionText), textChangeDelay);
                 }
                 isFinished = true;
                 FixBlocks();
@@ -108,7 +110,9 @@ public class ClearCheck_Stage2 : MonoBehaviour
 
     void ChangeMissionText()
     {
-        MissionImage.GetComponent<RectTransform>().sizeDelta = new Vector2(MissionImage.GetComponent<RectTransform>().sizeDelta.x, 34);
+        Vector2 missionImagePos = new Vector2(MissionImage.GetComponent<RectTransform>().sizeDelta.x, 34);
+
+        MissionImage.GetComponent<RectTransform>().sizeDelta = missionImagePos;
         MissionText.GetComponent<Text>().text = "보물상자를 여세요";
         MissionText.GetComponent<Text>().color = Color.black;
     }

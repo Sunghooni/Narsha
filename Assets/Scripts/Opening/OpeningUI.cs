@@ -10,51 +10,44 @@ public class OpeningUI : MonoBehaviour
     public GameObject Team;
 
     Color color;
-    string t;
-    int i = 0;
-    int j = 0;
-    int scwidth;
-    int scheight;
-    // Start is called before the first frame update
+    private int i = 0;
+    private int j = 0;
+    private int scwidth;
+    private int scheight;
+
     public void Awake()
     {
         scwidth = Screen.width;
         scheight = Screen.height;
         Screen.SetResolution(1920, 1080, Screen.fullScreenMode, 0);
     }
+
     public void Start()
     {
         color = Team.GetComponent<UnityEngine.UI.Text>().color;
 
-        InvokeRepeating("moveUI", 0.3f, 0.3f);       
+        InvokeRepeating(nameof(MoveUI), 0.3f, 0.3f);       
     }
 
-
-    void moveUI()
+    private void MoveUI()
     {   
-
         if (i < 12)
         {
-
             NTNT.transform.Translate(new Vector3(-100f, 0.0f, 0.0f));
             i++;
-
         }
         else
         {
-            Debug.Log("moveend");
-            InvokeRepeating("godown", 0.8f, 0.01f);      
+            InvokeRepeating(nameof(Godown), 0.8f, 0.01f);      
         }
     }
 
-    void godown()
+    private void Godown()
     {
         if (j < 100)
         {
-            Debug.Log("godown");
-            Debug.Log(color);
-
             NTNT.transform.Translate(new Vector3(0.0f, - 1f, 0.0f));
+
             if (j > 30)
             {
                 color.a += 0.01f;

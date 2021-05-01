@@ -12,14 +12,15 @@ public class BlockMove : MonoBehaviour
     public GameObject player;
     public bool canInput = true;
     public bool groundCheck = true;
-    //private const float tolerance = 0.3f; // 허용 오차범위 (공차)
+    public float inputCtrl = 1;
+
     private bool canMove = true;
     private bool isPressed = false;
     private Coroutine MoveCoroutine;
-    Vector2 InputAxis;
+    private Vector2 InputAxis;
     private Vector3 initialRotator;
-    private float delay = 0.3f;
-    public float inputCtrl = 1;
+    private const float delay = 0.3f;
+
     private void Awake()
     {
         initialRotator = transform.rotation.eulerAngles;
@@ -27,7 +28,7 @@ public class BlockMove : MonoBehaviour
 
     void Update()
     {
-        isGround();
+        IsGround();
         GetInput();
         ResetBlock();
         AudioManager.VolumeSize(float.Parse(OptionValues.GetVolume().ToString()));
@@ -39,7 +40,7 @@ public class BlockMove : MonoBehaviour
         float vert = Input.GetAxisRaw(OptionValues.GetVtKey()) * inputCtrl;
         InputAxis = new Vector2(horz, vert);
 
-        if(InputAxis.sqrMagnitude > 0 && canInput)
+        if (InputAxis.sqrMagnitude > 0 && canInput)
         {
             if(!isPressed)
             {
@@ -59,7 +60,7 @@ public class BlockMove : MonoBehaviour
 
     IEnumerator KeepMoving(float WaitBetweenMove)
     {
-        while(isPressed)
+        while (isPressed)
         {
             float degree = MathFunctionLibrary.VectorToDegree(new Vector2(InputAxis.x, InputAxis.y));
             player.transform.eulerAngles = new Vector3(initialRotator.x, -1 * MathFunctionLibrary.SnapByUnit(degree, 90));
@@ -68,26 +69,27 @@ public class BlockMove : MonoBehaviour
         }
     }
 
-    void Move(GameObject me)
+    private void Move(GameObject me)
     {
-        RaycastHit moveHit;
         Vector3 movePos = me.transform.position;
 
         if (me == player)
-            canMove = true;
-
-        if (Physics.Raycast(movePos, transform.right, out moveHit, 1)) 
         {
-            Debug.Log("Raycast Hit");
-            if (moveHit.transform.tag.Equals("Unmovable"))
+            canMove = true;
+        }
+        if (Physics.Raycast(movePos, transform.right, out RaycastHit moveHit, 1)) 
+        {
+            if (moveHit.transform.CompareTag("Unmovable"))
             {
                 canMove = false;
                 return;
             }
             else
+            {
                 Move(moveHit.transform.gameObject);
+            }
         }
-        if(canMove)
+        if (canMove)
         {
             movePos += transform.right;
             me.transform.position = movePos;
@@ -98,15 +100,18 @@ public class BlockMove : MonoBehaviour
 
     void ResetBlock()
     {
-        if(Input.GetKeyDown(KeyCode.R) && canInput)
+        if (Input.GetKeyDown(KeyCode.R) && canInput)
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
-    void isGround()
+    void IsGround()
     {
-        RaycastHit hit;
-        if (!Physics.Raycast(gameObject.transform.position, Vector3.down, out hit, 0.5f))
+        if (!Physics.Raycast(gameObject.transform.position, Vector3.down, 0.5f))
+        {
             inputCtrl = 0;
+        }
         else
         {
             inputCtrl = 1;
@@ -115,9 +120,8 @@ public class BlockMove : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag.Equals("WaterBlocks"))
+        if (collision.transform.CompareTag("WaterBlocks"))
         {
-            Debug.Log("Died");
             canInput = false;
             FindObjectOfType<InGameUIManager>().Die();
         }

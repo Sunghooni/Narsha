@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class ShowClear : MonoBehaviour
 {
-    public Camera MainCamera, ClearCamera;
+    public Camera MainCamera;
+    public Camera ClearCamera;
     public GameObject[] StageOneObject;
     public GameObject ClearCollider;
     public Vector3 InstantiatePosition;
-    [SerializeField]
-    int StageNumber;
-    int StageOneShowWoodIdx = 0;
-    private Coroutine ClearEventHandle; 
     public bool isClear;
-    bool SetBlock = false;
+    public int StageNumber;
+
+    private int StageOneShowWoodIdx = 0;
+    private Coroutine ClearEventHandle; 
+    private bool SetBlock = false;
 
     private void Awake()
     {
         ClearCamera.enabled = false;
     }
 
-    void Update()
+    private void Update()
     {
         if (FindObjectOfType<ClearCheck>().winCheck)
         {
@@ -32,11 +33,11 @@ public class ShowClear : MonoBehaviour
                 MainCamera.enabled = false;
 
                 switch (StageNumber)
-                   {
+                {
                     case 1:
                         StageOne();
                         break;
-                    }
+                }
             }
         }
     }
@@ -50,27 +51,28 @@ public class ShowClear : MonoBehaviour
         }
     }
 
-    void StageOneClear()
+    private void StageOneClear()
     {
         StageOneObject[StageOneShowWoodIdx].SetActive(true);
         ++StageOneShowWoodIdx;
-        Debug.Log(StageOneShowWoodIdx); 
     }
 
-    void StageOne()
+    private void StageOne()
     {
-        ClearCollider.SetActive(true);
         float timer = 0;
+
+        ClearCollider.SetActive(true);
         SetBlock = true;
+
         for (double i = 0; i < StageOneObject.Length; i += 1)
         {
-            Invoke("StageOneClear",  timer);
+            Invoke(nameof(StageOneClear), timer);
             timer += 0.2f;
         }
-        Invoke("StageClearEnd", 2.2f);
+        Invoke(nameof(StageClearEnd), 2.2f);
     }
 
-    void StageClearEnd()
+    private void StageClearEnd()
     {
         ClearCollider.SetActive(false);
         FindObjectOfType<BlockMove>().canInput = true;

@@ -6,13 +6,23 @@ using System.Text.RegularExpressions;
 
 public class InGameUIManager : MonoBehaviour
 {
-    public GameObject PausePanel, ClearPanel, DiePanel, player, Help, ShowHelpImage, MissionText, TutorialPanel;
-    public string HelpMessage, NextStage;
-    public string[] MissionMessage;
-    string JsonPath, JsonData;
-    int StageNumber;
-    bool HelpSelect = false;
+    public GameObject PausePanel;
+    public GameObject ClearPanel;
+    public GameObject DiePanel;
+    public GameObject player;
+    public GameObject Help;
+    public GameObject ShowHelpImage;
+    public GameObject MissionText;
+    public GameObject TutorialPanel;
     public bool ShowEnd = false;
+    public string HelpMessage;
+    public string NextStage;
+    public string[] MissionMessage;
+
+    private string JsonPath, JsonData;
+    private int StageNumber;
+    private bool HelpSelect = false;
+
     GameObject audio;
     AudioSource audioSource;
 
@@ -31,7 +41,6 @@ public class InGameUIManager : MonoBehaviour
     private void Update()
     {
         GamePause();
-        Debug.Log(ShowEnd);
     }
 
     void GamePause()
@@ -47,10 +56,15 @@ public class InGameUIManager : MonoBehaviour
             else
             {
                 PausePanel.SetActive(false);
+
                 if(!ShowEnd)
+                {
                     player.GetComponent<BlockMove>().canInput = true;
+                }
                 else
+                {
                     player.GetComponent<BlockMove>().canInput = false;
+                }
                 Time.timeScale = 1f;
             }
         }
@@ -95,8 +109,11 @@ public class InGameUIManager : MonoBehaviour
     {
         player.GetComponent<BlockMove>().canInput = false;
         ClearPanel.SetActive(true);
+
         if (StageNumber >= int.Parse(NextStage))
+        {
             return;
+        }
         File.WriteAllText(JsonPath, NextStage);
     }
 
