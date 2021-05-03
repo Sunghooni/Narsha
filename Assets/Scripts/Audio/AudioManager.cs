@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    private static AudioManager instance;
     public AudioClip[] Sounds;
+    private static AudioManager instance;
+    private AudioSource bgm;
 
     public static AudioManager GetInstance()
     {
@@ -16,12 +17,13 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+        }
     }
 
-    private void Update()
+    private void Start()
     {
-        AudioSource bgm;
         if (gameObject.GetComponent<AudioSource>())
         {
             bgm = gameObject.GetComponent<AudioSource>();
@@ -29,9 +31,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (bgm)
+        {
+            bgm.volume = OptionValues.GetVolume();
+        }
+    }
+
     public void PlaySounds(string audioIndex)
     {
         AudioSource audioPlayer = StaticObject.GetInstance().GetComponent<AudioSource>();
+
         if(audioPlayer == null)
         {
             audioPlayer = StaticObject.GetInstance().gameObject.AddComponent<AudioSource>();
@@ -50,10 +61,12 @@ public class AudioManager : MonoBehaviour
     public static void VolumeSize(float size)
     {
         AudioSource audioPlayer = StaticObject.GetInstance().GetComponent<AudioSource>();
+
         if (audioPlayer == null)
         {
             audioPlayer = StaticObject.GetInstance().gameObject.AddComponent<AudioSource>();
         }
+
         audioPlayer.volume = size;
     }
 }
